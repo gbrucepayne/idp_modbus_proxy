@@ -5,6 +5,7 @@ Functional Specification
 Operation
 *********
 
+
 Modbus Device Communication
 ===========================
 
@@ -23,10 +24,11 @@ Configuration of **ports**, **devices**, **parameters**, **reports** and **alert
 An **OTA API** provides satellite **message** constructs for remote configuration, query of parameters, and direct read/write of Modbus registers.  
 These **message** structures are sent using Inmarsat's `IDP Messaging API <https://developer.inmarsat.com/content/isatdatapro-messaging-api>`_.
 
+
 Reports
 =======
 
-Normally the satellite terminal is constantly polling the Modbus slave, and then relaying the data periodically to a central server via a **report**.
+Normally the satellite terminal is constantly polling the Modbus slave, and then relaying the data periodically to a central server via a **report**. The reports contain a configured list of register values, mapped to **parameters**.
 
 Periodic Reports
 ----------------
@@ -42,10 +44,11 @@ In this case, the measurement is taken as a *snapshot* at the specific time of d
 
 Time of Day reports from a given terminal will be sent at the same offset time within the window, each day.  However 2 terminals configured with same time of day and window, may transmit at different times relative to the other.
 
+
 Alerts
 ======
 
-**Alerts** are configured against a specific Modbus register (**parameter**) value that can detect a threshold crossing or change from the prior **report** or **alert** value.
+**Alerts** are configured against a specific Modbus register (**parameter**) value that can detect a threshold crossing or change from the prior **report** or **alert** value.  Alerts contain a configured list of register values (**parameters**) in addition to the triggering **parameter** and value.
 
 Threshold crossings are defined using *MIN* and *MAX* values, and allowing for a buffer for values near to the threshold trigger.
 
@@ -80,7 +83,6 @@ Modbus and serial communications errors are captured and sent as :ref:`alerts <e
 	:file: csvtables/diagnostics.csv
 	:header-rows: 1
 	:widths: 5, 20
-
 
 
 Geolocation and Movement Alerts

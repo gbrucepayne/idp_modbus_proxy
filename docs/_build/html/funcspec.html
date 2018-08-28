@@ -136,7 +136,7 @@ These <strong>message</strong> structures are sent using Inmarsat’s <a class="
 </div>
 <div class="section" id="reports">
 <h3>2.1.2. Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h3>
-<p>Normally the satellite terminal is constantly polling the Modbus slave, and then relaying the data periodically to a central server via a <strong>report</strong>.</p>
+<p>Normally the satellite terminal is constantly polling the Modbus slave, and then relaying the data periodically to a central server via a <strong>report</strong>. The reports contain a configured list of register values, mapped to <strong>parameters</strong>.</p>
 <div class="section" id="periodic-reports">
 <h4>2.1.2.1. Periodic Reports<a class="headerlink" href="#periodic-reports" title="Permalink to this headline">¶</a></h4>
 <p>By default, each <strong>report</strong> is sent immediately when configured or after a terminal reset.  Subsequent reports are sent at the defined interval in <em>seconds</em> relative to the previous report.</p>
@@ -151,7 +151,7 @@ In this case, the measurement is taken as a <em>snapshot</em> at the specific ti
 </div>
 <div class="section" id="alerts">
 <h3>2.1.3. Alerts<a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h3>
-<p><strong>Alerts</strong> are configured against a specific Modbus register (<strong>parameter</strong>) value that can detect a threshold crossing or change from the prior <strong>report</strong> or <strong>alert</strong> value.</p>
+<p><strong>Alerts</strong> are configured against a specific Modbus register (<strong>parameter</strong>) value that can detect a threshold crossing or change from the prior <strong>report</strong> or <strong>alert</strong> value.  Alerts contain a configured list of register values (<strong>parameters</strong>) in addition to the triggering <strong>parameter</strong> and value.</p>
 <p>Threshold crossings are defined using <em>MIN</em> and <em>MAX</em> values, and allowing for a buffer for values near to the threshold trigger.</p>
 <div class="section" id="low-threshold-alerts">
 <h4>2.1.3.1. Low Threshold Alerts<a class="headerlink" href="#low-threshold-alerts" title="Permalink to this headline">¶</a></h4>
