@@ -23,6 +23,11 @@ Configuration of **ports**, **devices**, **parameters**, **reports** and **alert
 An **OTA API** provides satellite **message** constructs for remote configuration, query of parameters, and direct read/write of Modbus registers.  
 These **message** structures are sent using Inmarsat's `IDP Messaging API <https://developer.inmarsat.com/content/isatdatapro-messaging-api>`_.
 
+Reports
+=======
+
+Normally the satellite terminal is constantly polling the Modbus slave, and then relaying the data periodically to a central server via a **report**.
+
 Periodic Reports
 ----------------
 
@@ -37,8 +42,31 @@ In this case, the measurement is taken as a *snapshot* at the specific time of d
 
 Time of Day reports from a given terminal will be sent at the same offset time within the window, each day.  However 2 terminals configured with same time of day and window, may transmit at different times relative to the other.
 
+Alerts
+======
+
+**Alerts** are configured against a specific Modbus register (**parameter**) value that can detect a threshold crossing or change from the prior **report** or **alert** value.
+
+Threshold crossings are defined using *MIN* and *MAX* values, and allowing for a buffer for values near to the threshold trigger.
+
+Low Threshold Alerts
+--------------------
+
+**minON** is a configuration value that is used to trigger the assert state of a low threshold alert.  The assert state stays on until or unless the value rises above **minOFF**, which will generate a second alert indicating a return to normal operating range.
+
+High Threshold Alerts
+---------------------
+
+**maxON** is a configuration value that is used to trigger the assert state of a high threshold alert.  The assert state stays on until or unless the value drops above **maxOFF**, which will generate a second alert indicating a return to normal operating range.
+
+Change Alerts
+-------------
+
+**change** is a configuration value that tests against an absolute change (higher or lower) relative to the last (or initial on start-up) read/reported value.
+
+
 Error Handling
---------------
+==============
 
 Modbus and serial communications errors are captured and sent as :ref:`alerts <error>`, as well as logged for diagnostic retrieval.  The following error scenarios are handled:
 
