@@ -1,0 +1,3337 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5. OTA API Integration &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. LSF API Integration" href="lsfapi.html" />
+    <link rel="prev" title="4. Configuration" href="configuration.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lsfapi.html" title="6. LSF API Integration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="4. Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. OTA API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#message-structure">5.1. Message Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">5.1.1. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#message-definitions">5.2. Message Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#to-mobile-messages">5.2.1. To-Mobile Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setmodbusconfig-min-10">5.2.1.1. setModbusConfig (MIN 10)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getmodbusconfig-min-11">5.2.1.2. getModbusConfig (MIN 11)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delmodbusconfig-min-12">5.2.1.3. delModbusConfig (MIN 12)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setreportconfig-min-13">5.2.1.4. setReportConfig (MIN 13)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getreportconfig-min-14">5.2.1.5. getReportConfig (MIN 14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delreportconfig-min-15">5.2.1.6. delReportConfig (MIN 15)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setalertconfig-min-16">5.2.1.7. setAlertConfig (MIN 16)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getalertconfig-min-17">5.2.1.8. getAlertConfig (MIN 17)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delalertconfig-min-18">5.2.1.9. delAlertConfig (MIN 18)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readparam-min-19">5.2.1.10. readParam (MIN 19)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writeparam-min-20">5.2.1.11. writeParam (MIN 20)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readdata-min-21">5.2.1.12. readData (MIN 21)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writedata-min-22">5.2.1.13. writeData (MIN 22)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setrefposition-min-23">5.2.1.14. setRefPosition (MIN 23)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#from-mobile-messages">5.2.2. From-Mobile Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#modbusconfig-min-10">5.2.2.1. modbusConfig (MIN 10)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reportconfig-min-11">5.2.2.2. reportConfig (MIN 11)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alertconfig-min-12">5.2.2.3. alertConfig (MIN 12)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readparamresults-min-13">5.2.2.4. readParamResults (MIN 13)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writeparamresults-min-14">5.2.2.5. writeParamResults (MIN 14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readdataresults-min-15">5.2.2.6. readDataResults (MIN 15)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writedataresults-min-16">5.2.2.7. writeDataResults (MIN 16)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#periodicreport-min-100">5.2.2.8. periodicReport (MIN 100)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paramalerton-min-101">5.2.2.9. paramAlertON (MIN 101)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paramalertoff-min-102">5.2.2.10. paramAlertOFF (MIN 102)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paramalertchange-min-103">5.2.2.11. paramAlertChange (MIN 103)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#positionchangealert-min-104">5.2.2.12. positionChangeAlert (MIN 104)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-min-200">5.2.2.13. error (MIN 200)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configuration.html"
+                        title="previous chapter">4. Configuration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lsfapi.html"
+                        title="next chapter">6. LSF API Integration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/otaapi.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ota-api-integration">
+<h1>5. OTA API Integration<a class="headerlink" href="#ota-api-integration" title="Permalink to this headline">¶</a></h1>
+<p>The over-the-air interface uses <strong>messages</strong> as the basis for communication.
+Messages are retrieved and submitted using Inmarsat’s <a class="reference external" href="https://developer.inmarsat.com/content/isatdatapro-messaging-api">IDP Messaging API</a>.</p>
+<p>The key Messaging API operations used are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">get_return_messages</span></code> is used for retrieving periodic <strong>reports</strong>, <strong>alerts</strong> and parameter/data read responses.  See <a class="reference internal" href="#from-mobile-messages"><span class="std std-ref">From-Mobile Messages</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">submit_messages</span></code> is used for configuration, and on-demand reading/writing of <strong>parameters</strong> or raw Modbus data.  See <a class="reference internal" href="#to-mobile-messages"><span class="std std-ref">To-Mobile Messages</span></a>.</li>
+</ul>
+<div class="section" id="message-structure">
+<h2>5.1. Message Structure<a class="headerlink" href="#message-structure" title="Permalink to this headline">¶</a></h2>
+<p>Each message is structured as a set of data <strong>fields</strong> that encapsulate different types of data.</p>
+<p><strong>Return Messages</strong> (aka Mobile-Originated, From-Mobile) are structured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Messages</span><span class="p">[{</span>
+   <span class="n">ID</span><span class="p">,</span>
+   <span class="n">MessageUTC</span><span class="p">,</span>
+   <span class="n">ReceiveUTC</span><span class="p">,</span>
+   <span class="n">SIN</span><span class="p">,</span>
+   <span class="n">MobileID</span><span class="p">,</span>
+   <span class="n">OTAMessageSize</span><span class="p">,</span>
+   <span class="n">RawPayload</span><span class="p">,</span>
+   <span class="n">RegionName</span><span class="p">,</span>
+   <span class="n">Payload</span><span class="p">{</span>
+      <span class="n">Name</span><span class="p">,</span>
+      <span class="n">SIN</span><span class="p">,</span>
+      <span class="n">MIN</span><span class="p">,</span>
+      <span class="n">Fields</span><span class="p">[</span>
+         <span class="p">{</span>
+         <span class="n">Name</span><span class="p">,</span>
+         <span class="n">Type</span><span class="p">,</span>
+         <span class="o">&lt;</span><span class="n">Value</span><span class="o">&gt;</span><span class="p">,</span>
+         <span class="o">&lt;</span><span class="n">Elements</span><span class="o">&gt;</span><span class="p">[</span>
+            <span class="p">{</span>
+            <span class="n">Index</span><span class="p">,</span>
+            <span class="n">Fields</span><span class="p">[</span>
+               <span class="p">{</span>
+               <span class="n">Name</span><span class="p">,</span>
+               <span class="n">Type</span><span class="p">,</span>
+               <span class="n">Value</span>
+               <span class="p">}]</span>
+            <span class="p">}]</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<p><strong>Forward Messages</strong> (aka Mobile-Terminated, To-Mobile) are structured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Messages</span><span class="p">[{</span>
+   <span class="n">DestinationID</span><span class="p">,</span>
+   <span class="o">&lt;</span><span class="n">UserMessageID</span><span class="o">&gt;</span><span class="p">,</span>
+   <span class="o">&lt;</span><span class="n">RawPayload</span><span class="o">&gt;</span><span class="p">,</span>
+   <span class="o">&lt;</span><span class="n">Payload</span><span class="o">&gt;</span><span class="p">[</span>
+      <span class="o">&lt;</span><span class="n">Name</span><span class="o">&gt;</span><span class="p">,</span>
+      <span class="o">&lt;</span><span class="n">isForward</span><span class="o">&gt;</span><span class="p">,</span>
+      <span class="n">SIN</span><span class="p">,</span>
+      <span class="n">MIN</span><span class="p">,</span>
+      <span class="o">&lt;</span><span class="n">Fields</span><span class="o">&gt;</span><span class="p">[</span>
+         <span class="p">{</span>
+         <span class="n">Name</span><span class="p">,</span>
+         <span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">,</span>
+         <span class="o">&lt;</span><span class="n">Value</span><span class="o">&gt;</span><span class="p">,</span>
+         <span class="o">&lt;</span><span class="n">Elements</span><span class="o">&gt;</span><span class="p">[</span>
+            <span class="p">{</span>
+            <span class="n">Index</span><span class="p">,</span>
+            <span class="n">Fields</span><span class="p">[</span>
+               <span class="p">{</span>
+               <span class="n">Name</span><span class="p">,</span>
+               <span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">,</span>
+               <span class="n">Value</span>
+               <span class="p">}]</span>
+            <span class="p">}]</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">]</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<div class="section" id="example">
+<h3>5.1.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>An <strong>report</strong> with a single <strong>parameter</strong> <code class="docutils literal notranslate"><span class="pre">Payload</span></code> within a <code class="docutils literal notranslate"><span class="pre">ReturnMessage</span></code> for <a class="reference internal" href="#periodicreport"><span class="std std-ref">periodicReport (MIN 100)</span></a> is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Payload</span><span class="p">[</span>
+  <span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;periodicReport&quot;</span><span class="p">,</span>
+  <span class="n">SIN</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="n">MIN</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="n">Fields</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;reportId&quot;</span><span class="p">,</span>
+          <span class="n">Type</span><span class="p">:</span> <span class="s2">&quot;unsignedint&quot;</span><span class="p">,</span>
+          <span class="n">Value</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;parameters&quot;</span><span class="p">,</span>
+          <span class="n">Type</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+          <span class="n">Elements</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                  <span class="n">Index</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="n">Fields</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                          <span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;paramId&quot;</span><span class="p">,</span>
+                          <span class="n">Type</span><span class="p">:</span> <span class="s2">&quot;unsignedint&quot;</span><span class="p">,</span>
+                          <span class="n">Value</span><span class="p">:</span> <span class="mi">1</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                          <span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                          <span class="n">Type</span><span class="p">:</span> <span class="s2">&quot;unsignedint&quot;</span><span class="p">,</span>
+                          <span class="n">Value</span><span class="p">:</span> <span class="mi">300</span>
+                        <span class="p">}</span>
+                  <span class="p">]</span>
+                <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="message-definitions">
+<h2>5.2. Message Definitions<a class="headerlink" href="#message-definitions" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-how-to-read-the-tables admonition">
+<p class="first admonition-title">How to Read the Tables</p>
+<p>The tables used in this section follow the convention of the ORBCOMM Lua Terminal API documentation (<strong>T202</strong>, <strong>T405</strong>).</p>
+<ul class="last">
+<li><p class="first"><strong>Field Name</strong> is a description for the <code class="docutils literal notranslate"><span class="pre">Field.Name</span></code> <em>(case sensitive)</em></p>
+</li>
+<li><p class="first"><strong>Type</strong> is the (data) type passed in the REST API</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">boolean</span></code> for values held in Coils or Digital Inputs</li>
+<li><code class="docutils literal notranslate"><span class="pre">unsignedint</span></code> is used for 16-bit unsigned integers</li>
+<li><code class="docutils literal notranslate"><span class="pre">signedint</span></code> is used for both 16-bit and 32-bit signed integers</li>
+<li><code class="docutils literal notranslate"><span class="pre">string</span></code> is used to transport 32-bit floating point numbers and ASCII data</li>
+<li><code class="docutils literal notranslate"><span class="pre">data</span></code> is used to transport <strong>raw</strong> byte arrays</li>
+<li><code class="docutils literal notranslate"><span class="pre">array</span></code> is used to encapsulate <strong>parameters</strong></li>
+<li><code class="docutils literal notranslate"><span class="pre">enum</span></code> is used by some configuration messages to enumerate static labels with integer values</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Optional</strong> means that the field may or may not be included in a submission or response</p>
+</li>
+<li><p class="first"><strong>Fixed</strong> means that the length of the field is fixed <em>(vs. variable)</em></p>
+</li>
+<li><p class="first"><strong>Size</strong> is the length of the field, depending on the Type encoding it represents:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Bits</em> when the <strong>Type</strong> is <code class="docutils literal notranslate"><span class="pre">unsignedint</span></code>, <code class="docutils literal notranslate"><span class="pre">signedint</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, or <code class="docutils literal notranslate"><span class="pre">enum</span></code></li>
+<li><em>Bytes</em> when the <strong>Type</strong> is <code class="docutils literal notranslate"><span class="pre">string</span></code> <em>(characters)</em> or <code class="docutils literal notranslate"><span class="pre">data</span></code></li>
+<li><em>Elements (maximum)</em> when the <strong>Type</strong> is <code class="docutils literal notranslate"><span class="pre">array</span></code> <em>(note that array OTA size is complex to calculate)</em></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Lua Service Framework used on IDP-series terminals does not support unsigned 32-bit integers, so the Modbus service only supports 16-bit unsigned.
+You could work around this by defining a 32-bit unsignedint as <code class="docutils literal notranslate"><span class="pre">raw</span></code> in <code class="docutils literal notranslate"><span class="pre">config.dat</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Lua Service Framework does not support floating point data types natively as message fields.
+Modbus service converts IEEE floating point to a string value of the decimal number <em>(e.g. “123.456” instead of 0x42f6e979 or [66 246 233 121])</em>.</p>
+</div>
+<div class="section" id="to-mobile-messages">
+<span id="id1"></span><h3>5.2.1. To-Mobile Messages<a class="headerlink" href="#to-mobile-messages" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="colwidths-given docutils" id="id3">
+<caption><span class="caption-text">To-Mobile Messages</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="10%" />
+<col width="24%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">MIN</th>
+<th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>10</td>
+<td><a class="reference internal" href="#setmodbusconfig"><span class="std std-ref">setModbusConfig</span></a></td>
+<td>Configure <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong> and <strong>properties</strong></td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td><a class="reference internal" href="#getmodbusconfig"><span class="std std-ref">getModbusConfig</span></a></td>
+<td>Get configuration of <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong> and <strong>properties</strong></td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td><a class="reference internal" href="#delmodbusconfig"><span class="std std-ref">delModbusConfig</span></a></td>
+<td>Delete configuration(s)</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td><a class="reference internal" href="#setreportconfig"><span class="std std-ref">setReportConfig</span></a></td>
+<td>Configure periodic <strong>reports</strong></td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td><a class="reference internal" href="#getreportconfig"><span class="std std-ref">getReportConfig</span></a></td>
+<td>Get configuration of periodic <strong>reports</strong></td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td><a class="reference internal" href="#delreportconfig"><span class="std std-ref">delReportConfig</span></a></td>
+<td>Delete periodic <strong>reports</strong></td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td><a class="reference internal" href="#setalertconfig"><span class="std std-ref">setAlertConfig</span></a></td>
+<td>Configure <strong>alerts</strong></td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td><a class="reference internal" href="#getalertconfig"><span class="std std-ref">getAlertConfig</span></a></td>
+<td>Get configuration of <strong>alerts</strong></td>
+</tr>
+<tr class="row-even"><td>18</td>
+<td><a class="reference internal" href="#delalertconfig"><span class="std std-ref">delAlertConfig</span></a></td>
+<td>Delete configuration of <strong>alerts</strong></td>
+</tr>
+<tr class="row-odd"><td>19</td>
+<td><a class="reference internal" href="#readparam"><span class="std std-ref">readParam</span></a></td>
+<td>Read <strong>parameters</strong> data values immediately.</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td><a class="reference internal" href="#writeparam"><span class="std std-ref">writeParam</span></a></td>
+<td>Write <strong>parameters</strong> data values immediately.</td>
+</tr>
+<tr class="row-odd"><td>21</td>
+<td><a class="reference internal" href="#readdata"><span class="std std-ref">readData</span></a></td>
+<td>Read a Modbus register directly.</td>
+</tr>
+<tr class="row-even"><td>22</td>
+<td><a class="reference internal" href="#writedata"><span class="std std-ref">writeData</span></a></td>
+<td>Write a Modbus register directly.</td>
+</tr>
+<tr class="row-odd"><td>23</td>
+<td><a class="reference internal" href="#setrefposition"><span class="std std-ref">setRefPosition</span></a></td>
+<td>Sets the current location as the <em>geolocation</em> reference, and acknowledges a <strong>positionChangeAlert</strong></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="setmodbusconfig-min-10">
+<span id="setmodbusconfig"></span><h4>5.2.1.1. setModbusConfig (MIN 10)<a class="headerlink" href="#setmodbusconfig-min-10" title="Permalink to this headline">¶</a></h4>
+<p>Configures Modbus <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong> (and optionally <strong>properties</strong>).</p>
+<table border="1" class="colwidths-given docutils" id="id4">
+<caption><span class="caption-text">setModbusConfig</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ports</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>3</td>
+<td>A serial port used to connect to one or more Modbus devices.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>port</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">Name of the port</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs485</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232aux</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>baudRate</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>3</td>
+<td><div class="first last line-block">
+<div class="line">Speed of serial communications.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">1200</span></code>, <code class="docutils literal notranslate"><span class="pre">2400</span></code>, <code class="docutils literal notranslate"><span class="pre">4800</span></code>, <code class="docutils literal notranslate"><span class="pre">9600</span></code>, <code class="docutils literal notranslate"><span class="pre">19200</span></code>, <code class="docutils literal notranslate"><span class="pre">38400</span></code>, <code class="docutils literal notranslate"><span class="pre">57600</span></code>, <code class="docutils literal notranslate"><span class="pre">115200</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>parity</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">none</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">even</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">odd</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>mode</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">rtu</span></code> or <code class="docutils literal notranslate"><span class="pre">ascii</span></code></td>
+</tr>
+<tr class="row-odd"><td>devices</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>Configuration of Modbus slave devices.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Unique identifier of the device in the Modbus service.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>networkId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Modbus Slave address on the physical network.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>port</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td>Serial port on which the device is attached.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>pollInterval</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>17</td>
+<td>The interval (seconds) at which the device registers are polled.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>byteOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">msb</span></code> or <code class="docutils literal notranslate"><span class="pre">lsb</span></code></td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>wordOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">msw</span></code> or <code class="docutils literal notranslate"><span class="pre">lsw</span></code></td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>serialRxTimeout</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>15</td>
+<td>Read timeout (milliseconds) waiting on next byte to be received.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>serialTxTimeout</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>15</td>
+<td>Read timeout (milliseconds) waiting on last transmitted byte to be confirmed.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>plcBaseAddress</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>N/A</td>
+<td>1</td>
+<td>1 = Use PLC addressing (non zero-based)</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>retries</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>4</td>
+<td>The number of serial retries to attempt before raising a communication error.</td>
+</tr>
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>300</td>
+<td>Configuration of parameters used by the service.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>Unique identifier of the parameter used for reporting and analytics.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Unique identifier of the device in the Modbus service.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code> - discrete output coil</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code> - discrete digital input</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">analog</span></code> - (analog) input register</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holding</span></code> - holding register</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>4</td>
+<td><code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code>, <code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code>, <code class="docutils literal notranslate"><span class="pre">raw</span></code></td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>31</td>
+<td>Starting Modbus register address of the data</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>length</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>12</td>
+<td>Number of registers used to contain the data (including the starting address)</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>mult</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>7</td>
+<td>A multiplier applied to the data value prior to reporting or analytics.</td>
+</tr>
+<tr class="row-even"><td>properties</td>
+<td>array</td>
+<td>Y</td>
+<td>N/A</td>
+<td>245</td>
+<td>Mapping of parameters to properties.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>Unique identifier of the parameter used for reporting and analytics.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>pin</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The property identification number (within Modbus service) to hold the parameter value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getmodbusconfig-min-11">
+<span id="getmodbusconfig"></span><h4>5.2.1.2. getModbusConfig (MIN 11)<a class="headerlink" href="#getmodbusconfig-min-11" title="Permalink to this headline">¶</a></h4>
+<p>Retrieves select Modbus configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id5">
+<caption><span class="caption-text">getModbusConfig</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>port</td>
+<td>enum</td>
+<td>Y</td>
+<td>Y</td>
+<td>3</td>
+<td><div class="first last line-block">
+<div class="line">If included, specifies the <strong>port</strong> configuration being queried. If <em>not</em> included, all ports configurations will be returned.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs485</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232aux</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>deviceId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>8</td>
+<td>If included, specifies the <strong>device</strong> configuration being queried.  If <em>not</em> included, all device configurations will be returned.</td>
+</tr>
+<tr class="row-even"><td>paramId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>10</td>
+<td>If included, specifies the <strong>parameter</strong> configuration being queried.  If <em>not</em> included, all parameters configurations will be returned.</td>
+</tr>
+<tr class="row-odd"><td>properties</td>
+<td>boolean</td>
+<td>Y</td>
+<td>Y</td>
+<td>1</td>
+<td>If included, <strong>properties</strong> configured will be returned.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="delmodbusconfig-min-12">
+<span id="delmodbusconfig"></span><h4>5.2.1.3. delModbusConfig (MIN 12)<a class="headerlink" href="#delmodbusconfig-min-12" title="Permalink to this headline">¶</a></h4>
+<p>Deletes select Modbus configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id6">
+<caption><span class="caption-text">delModbusConfig</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ports</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>3</td>
+<td>If included, configuration for the specified <strong>ports</strong> will be deleted.  If <em>not</em> included, no ports will be deleted.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>port</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">Name of the <strong>port</strong> configuration to delete.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs485</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232aux</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>devices</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>If included, configuration for the specified <strong>devices</strong> will be deleted.  If <em>not</em> included, no devices will be deleted.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifier of the <strong>device</strong> to delete.</td>
+</tr>
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>300</td>
+<td>If included, configuration for the specified <strong>parameters</strong> will be deleted.  If <em>not</em> included, no parameters will be deleted.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>Unique identifier of the <strong>parameter</strong> to delete.</td>
+</tr>
+<tr class="row-even"><td>properties</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>245</td>
+<td>If included, configuration for the specified <strong>properties</strong> will be deleted.  If <em>not</em> included, no properties will be deleted.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>property</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>The property identification number (within Modbus service) to hold the parameter value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="setreportconfig-min-13">
+<span id="setreportconfig"></span><h4>5.2.1.4. setReportConfig (MIN 13)<a class="headerlink" href="#setreportconfig-min-13" title="Permalink to this headline">¶</a></h4>
+<p>Configures periodic <strong>reports</strong>.</p>
+<table border="1" class="colwidths-given docutils" id="id7">
+<caption><span class="caption-text">setReportConfig</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>reports</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of periodic <strong>reports</strong> to configure.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>reportId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>Unique identifier of the <strong>report</strong> associated with particular parameter values.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramIds</li>
+</ul>
+</td>
+<td>string</td>
+<td>N</td>
+<td>N</td>
+<td>255</td>
+<td>Comma-separated list of <strong>parameter</strong> ids to be included in the <strong>report</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>interval</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>20</td>
+<td>The periodic <strong>report</strong> interval, in <em>seconds</em>.  The first <strong>report</strong> will be sent as soon as the new configuration is applied.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>timeOfDay</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>18</td>
+<td><em>Optional</em> time of day, in seconds (0..86400) to create a snapshot that will be reported within the <strong>timeOfDayWindow</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>timeOfDayWindow</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>13</td>
+<td><em>Must be included</em> if using <strong>timeOfDay</strong>.  Window, in seconds, within which the <strong>report</strong> will be sent offset relative to the <strong>timeOfDay</strong> snapshot.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>msgBitMap</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+<td>ASCII string of <em>metadata</em> fields to include, overriding <strong>defaultMsgBitmap</strong> value.  See <a class="reference internal" href="configuration.html#msgbitmap"><span class="std std-ref">Optional Metadata Fields Configuration (MsgBitmap, defaultMsgBitmap)</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getreportconfig-min-14">
+<span id="getreportconfig"></span><h4>5.2.1.5. getReportConfig (MIN 14)<a class="headerlink" href="#getreportconfig-min-14" title="Permalink to this headline">¶</a></h4>
+<p>Retrieves select Report configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id8">
+<caption><span class="caption-text">getReportConfig</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>reportId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td>If included, specifies the <strong>report</strong> configuration being queried. If <em>not</em> included, all reports configurations will be returned.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="delreportconfig-min-15">
+<span id="delreportconfig"></span><h4>5.2.1.6. delReportConfig (MIN 15)<a class="headerlink" href="#delreportconfig-min-15" title="Permalink to this headline">¶</a></h4>
+<p>Deletes select Report configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id9">
+<caption><span class="caption-text">delReportConfig</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>reportId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">If included, specifies the <strong>report</strong> configuration being deleted.</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If <em>not</em> included, all reports configurations will be deleted.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="setalertconfig-min-16">
+<span id="setalertconfig"></span><h4>5.2.1.7. setAlertConfig (MIN 16)<a class="headerlink" href="#setalertconfig-min-16" title="Permalink to this headline">¶</a></h4>
+<p>Configures <strong>alerts</strong>.</p>
+<table border="1" class="colwidths-given docutils" id="id10">
+<caption><span class="caption-text">setAlertConfig</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alerts</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>alerts</strong> to configure.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>alertId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>Unique identifier of the <strong>alert</strong> associated with a particular parameter trigger.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>The ID of the trigger <strong>parameter</strong> on which the analytics is run.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramIds</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>N</td>
+<td>255</td>
+<td>Comma-separated list of <strong>parameter</strong> values to be included in the <strong>alert</strong>, in addition to the trigger parameter.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>minON</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td>The lower threshold against which the parameter is tested.  If the value drops below this, an <strong>alertON</strong> is sent.  The parameter stays in the alert state until the value rises above <strong>minOFF</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>minOFF</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td><p class="first">The normal low threshold against which the parameter is tested.  If the parameter is in the alert state and rises above this value, the alert state is off and an <strong>alertOFF</strong> is sent.</p>
+<p class="last">If <em>not</em> specified, <strong>minON</strong> will be used as the return to normal trigger.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>maxON</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td>The upper threshold against which the parameter is tested.  If the value rises above this, an <strong>alertON</strong> is sent.  The parameter stays in the alert state until the value drops below <strong>maxOFF</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>maxOFF</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td><p class="first">The normal high threshold against which the parameter is tested.  If the parameter is in the alert state and drops below this value, the alert state is off and an <strong>alertOFF</strong> is sent.</p>
+<p class="last">If <em>not</em> specified, <strong>maxON</strong> will be used as the return to normal trigger.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>change</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td>The absolute value difference from the last reported value, which will trigger a <strong>alertChange</strong> to be sent.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>msgBitMap</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+<td>ASCII string of <em>metadata</em> fields to include, overriding <strong>defaultMsgBitmap</strong> value.  See <a class="reference internal" href="configuration.html#msgbitmap"><span class="std std-ref">Optional Metadata Fields Configuration (MsgBitmap, defaultMsgBitmap)</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getalertconfig-min-17">
+<span id="getalertconfig"></span><h4>5.2.1.8. getAlertConfig (MIN 17)<a class="headerlink" href="#getalertconfig-min-17" title="Permalink to this headline">¶</a></h4>
+<p>Retrieves select Alert configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id11">
+<caption><span class="caption-text">getAlertConfig</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alertId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td>If included, specifies the <strong>alert</strong> configuration being queried. If <em>not</em> included, all alerts configurations will be returned.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="delalertconfig-min-18">
+<span id="delalertconfig"></span><h4>5.2.1.9. delAlertConfig (MIN 18)<a class="headerlink" href="#delalertconfig-min-18" title="Permalink to this headline">¶</a></h4>
+<p>Deletes select Alert configuration(s).</p>
+<table border="1" class="colwidths-given docutils" id="id12">
+<caption><span class="caption-text">delAlertConfig</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alertId</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">If included, specifies the <strong>alert</strong> configuration being deleted.</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If <em>not</em> included, all alerts configurations will be deleted.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="readparam-min-19">
+<span id="readparam"></span><h4>5.2.1.10. readParam (MIN 19)<a class="headerlink" href="#readparam-min-19" title="Permalink to this headline">¶</a></h4>
+<p>Reads select <strong>parameter</strong> values immediately.</p>
+<table border="1" class="colwidths-given docutils" id="id13">
+<caption><span class="caption-text">readParam</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>parameter</strong> values being queried.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>Unique identifier of the <strong>parameter</strong> to query.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="writeparam-min-20">
+<span id="writeparam"></span><h4>5.2.1.11. writeParam (MIN 20)<a class="headerlink" href="#writeparam-min-20" title="Permalink to this headline">¶</a></h4>
+<p>Writes select <strong>parameter</strong> values immediately.  (Must be <code class="docutils literal notranslate"><span class="pre">coil</span></code> or <code class="docutils literal notranslate"><span class="pre">holding</span></code> types)</p>
+<table border="1" class="colwidths-given docutils" id="id14">
+<caption><span class="caption-text">writeParam</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>parameter</strong> values being written.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>Unique identifier of the <strong>parameter</strong> to write.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td>string</td>
+<td>N</td>
+<td>N</td>
+<td>255</td>
+<td>The value, in <em>string</em> format, to write to the <strong>parameter</strong>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="readdata-min-21">
+<span id="readdata"></span><h4>5.2.1.12. readData (MIN 21)<a class="headerlink" href="#readdata-min-21" title="Permalink to this headline">¶</a></h4>
+<p>Reads select blocks of Modbus addresses directly.</p>
+<table border="1" class="colwidths-given docutils" id="id15">
+<caption><span class="caption-text">readData</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>addresses</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of Modbus register addresses to be read.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifier of the <strong>device</strong> in the configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">The register type:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">inputRegister</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holdingRegister</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>The starting address to read.  (May be offset if <strong>device</strong> is configured with <strong>plcBaseAddress</strong>)</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>4</td>
+<td><div class="first last line-block">
+<div class="line">Data conversion to apply to the requested value when responding.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">boolean</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">float32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">base64string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">raw</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>length</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>12</td>
+<td>The number of registers to read.  This is <em>implied</em> for all encoding types except <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> and <code class="docutils literal notranslate"><span class="pre">raw</span></code></td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>byteOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>Y</td>
+<td>1</td>
+<td><div class="first last line-block">
+<div class="line">Byte order for interpreting data response.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">msb</span></code> (<em>default</em>) most significant byte</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lsb</span></code> least significant byte</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>wordOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>Y</td>
+<td>1</td>
+<td><div class="first last line-block">
+<div class="line">Word order (16-bit blocks) for interpreting data response.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">msw</span></code> (<em>default</em>) most significant word</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lsw</span></code> least significant word</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="writedata-min-22">
+<span id="writedata"></span><h4>5.2.1.13. writeData (MIN 22)<a class="headerlink" href="#writedata-min-22" title="Permalink to this headline">¶</a></h4>
+<p>Writes select blocks of Modbus addresses directly.  (Must be <em>Output Coils</em> or <em>Holding Registers</em>)</p>
+<table border="1" class="colwidths-given docutils" id="id16">
+<caption><span class="caption-text">writeData</span><a class="headerlink" href="#id16" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>addresses</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of Modbus register addresses to be read.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifier of the <strong>device</strong> in the configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">The register type:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">inputRegister</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holdingRegister</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>The starting address to write.  (May be offset if <strong>device</strong> is configured with <strong>plcBaseAddress</strong>)</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>4</td>
+<td><div class="first last line-block">
+<div class="line">Data conversion to apply to the submitted (<em>string</em>) <strong>value</strong> when writing to the register.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">boolean</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">float32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">base64string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">raw</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td>string</td>
+<td>N</td>
+<td>N</td>
+<td>255</td>
+<td><p class="first">The value to write, presented as an ASCII string.</p>
+<ul class="last simple">
+<li>For sending raw data, the string must be represented as space separated hex values e.g. “0A 1B 2C”</li>
+<li>For sending Boolean data, the string must be represented as a number e.g. “1” for <em>true</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>byteOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>Y</td>
+<td>1</td>
+<td><div class="first last line-block">
+<div class="line">Byte order for interpreting data response.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">msb</span></code> (<em>default</em>) most significant byte</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lsb</span></code> least significant byte</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>wordOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>Y</td>
+<td>Y</td>
+<td>1</td>
+<td><div class="first last line-block">
+<div class="line">Word order (16-bit blocks) for interpreting data response.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">msw</span></code> (<em>default</em>) most significant word</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lsw</span></code> least significant word</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="setrefposition-min-23">
+<span id="setrefposition"></span><h4>5.2.1.14. setRefPosition (MIN 23)<a class="headerlink" href="#setrefposition-min-23" title="Permalink to this headline">¶</a></h4>
+<p>Acknowledges the receipt of a <a class="reference internal" href="#positionchangealert"><span class="std std-ref">positionChangeAlert (MIN 104)</span></a> and sets the current location as the new movement reference.</p>
+<p>This message contains no <strong>Fields</strong>, it is just submitted with <strong>SIN</strong> and <strong>MIN</strong>.</p>
+</div>
+</div>
+<div class="section" id="from-mobile-messages">
+<span id="id2"></span><h3>5.2.2. From-Mobile Messages<a class="headerlink" href="#from-mobile-messages" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="colwidths-given docutils" id="id17">
+<caption><span class="caption-text">From-Mobile Messages</span><a class="headerlink" href="#id17" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="10%" />
+<col width="24%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">MIN</th>
+<th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>10</td>
+<td><a class="reference internal" href="#modbusconfig"><span class="std std-ref">modbusConfig</span></a></td>
+<td>Response to set/get/del <a class="reference internal" href="#setmodbusconfig"><span class="std std-ref">ModbusConfig</span></a></td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td><a class="reference internal" href="#reportconfig"><span class="std std-ref">reportConfig</span></a></td>
+<td>Response to set/get/del <a class="reference internal" href="#setreportconfig"><span class="std std-ref">ReportConfig</span></a></td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td><a class="reference internal" href="#alertconfig"><span class="std std-ref">alertConfig</span></a></td>
+<td>Response to set/get/del <a class="reference internal" href="#setalertconfig"><span class="std std-ref">AlertConfig</span></a></td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td><a class="reference internal" href="#readparamresults"><span class="std std-ref">readParamResults</span></a></td>
+<td>Response to <a class="reference internal" href="#readparam"><span class="std std-ref">readParam</span></a></td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td><a class="reference internal" href="#writeparamresults"><span class="std std-ref">writeParamResults</span></a></td>
+<td>Response to <a class="reference internal" href="#writeparam"><span class="std std-ref">writeParam</span></a></td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td><a class="reference internal" href="#readdataresults"><span class="std std-ref">readDataResults</span></a></td>
+<td>Response to <a class="reference internal" href="#readdata"><span class="std std-ref">readData</span></a></td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td><a class="reference internal" href="#writedataresults"><span class="std std-ref">writeDataResults</span></a></td>
+<td>Response to <a class="reference internal" href="#writedata"><span class="std std-ref">writeData</span></a></td>
+</tr>
+<tr class="row-odd"><td>100</td>
+<td><a class="reference internal" href="#periodicreport"><span class="std std-ref">periodicReport</span></a></td>
+<td>Periodic <strong>report</strong> generated at time interval or time of day.</td>
+</tr>
+<tr class="row-even"><td>101</td>
+<td><a class="reference internal" href="#paramalerton"><span class="std std-ref">paramAlertON</span></a></td>
+<td>Immediate <strong>alert</strong> generated by high/low threshold trigger.</td>
+</tr>
+<tr class="row-odd"><td>102</td>
+<td><a class="reference internal" href="#paramalertoff"><span class="std std-ref">paramAlertOFF</span></a></td>
+<td>Immediate <strong>alert</strong> generated by return to normal from outside threshold.</td>
+</tr>
+<tr class="row-even"><td>103</td>
+<td><a class="reference internal" href="#paramalertchange"><span class="std std-ref">paramAlertChange</span></a></td>
+<td>Immediate <strong>alert</strong> generated by change threshold trigger.</td>
+</tr>
+<tr class="row-odd"><td>104</td>
+<td><a class="reference internal" href="#positionchangealert"><span class="std std-ref">positionChangeAlert</span></a></td>
+<td>Immediate <strong>alert</strong> based on movement detection/geolocation.</td>
+</tr>
+<tr class="row-even"><td>200</td>
+<td><a class="reference internal" href="#error"><span class="std std-ref">error</span></a></td>
+<td>Error alert due to Modbus/serial or configuration problem.</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="modbusconfig-min-10">
+<span id="modbusconfig"></span><h4>5.2.2.1. modbusConfig (MIN 10)<a class="headerlink" href="#modbusconfig-min-10" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#setmodbusconfig"><span class="std std-ref">setModbusConfig (MIN 10)</span></a> or <a class="reference internal" href="#getmodbusconfig"><span class="std std-ref">getModbusConfig (MIN 11)</span></a> or <a class="reference internal" href="#delmodbusconfig"><span class="std std-ref">delModbusConfig (MIN 12)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id18">
+<caption><span class="caption-text">modbusConfig</span><a class="headerlink" href="#id18" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ports</td>
+<td>array</td>
+<td>Y</td>
+<td>Y</td>
+<td>3</td>
+<td>Included only if the set/get operation specified <strong>ports</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>port</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">Name of the port</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs485</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">rs232aux</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>baudRate</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>3</td>
+<td><div class="first last line-block">
+<div class="line">Speed of serial communications.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">1200</span></code>, <code class="docutils literal notranslate"><span class="pre">2400</span></code>, <code class="docutils literal notranslate"><span class="pre">4800</span></code>, <code class="docutils literal notranslate"><span class="pre">9600</span></code>, <code class="docutils literal notranslate"><span class="pre">19200</span></code>, <code class="docutils literal notranslate"><span class="pre">38400</span></code>, <code class="docutils literal notranslate"><span class="pre">57600</span></code>, <code class="docutils literal notranslate"><span class="pre">115200</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>parity</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">none</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">even</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">odd</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>mode</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">rtu</span></code> or <code class="docutils literal notranslate"><span class="pre">ascii</span></code></td>
+</tr>
+<tr class="row-odd"><td>devices</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>Included only if the set/get operation specified <strong>devices</strong>.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Unique identifier of the device in the Modbus service.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>networkId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Modbus Slave address on the physical network.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>port</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td>Serial port on which the device is attached.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>pollInterval</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>17</td>
+<td>The interval (seconds) at which the device registers are polled.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>byteOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">msb</span></code> or <code class="docutils literal notranslate"><span class="pre">lsb</span></code></td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>wordOrder</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>1</td>
+<td><code class="docutils literal notranslate"><span class="pre">msw</span></code> or <code class="docutils literal notranslate"><span class="pre">lsw</span></code></td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>serialRxTimeout</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>15</td>
+<td>Read timeout (milliseconds) waiting on next byte to be received.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>serialTxTimeout</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>15</td>
+<td>Read timeout (milliseconds) waiting on last transmitted byte to be confirmed.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>plcBaseAddress</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>1</td>
+<td>1 = Use PLC addressing (non zero-based)</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>retries</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>4</td>
+<td>The number of serial retries to attempt before raising a communication error.</td>
+</tr>
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>300</td>
+<td>Included only if the set/get operation specified <strong>parameters</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>Unique identifier of the parameter used for reporting and analytics.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>Unique identifier of the device in the Modbus service.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code> - discrete output coil</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code> - discrete digital input</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">analog</span></code> - (analog) input register</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holding</span></code> - holding register</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>N/A</td>
+<td>4</td>
+<td><code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code>, <code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code>, <code class="docutils literal notranslate"><span class="pre">raw</span></code></td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>31</td>
+<td>Starting Modbus register address of the data</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>length</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>12</td>
+<td>Number of registers used to contain the data (including the starting address)</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>mult</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>7</td>
+<td>A multiplier applied to the data value prior to reporting or analytics.</td>
+</tr>
+<tr class="row-even"><td>properties</td>
+<td>array</td>
+<td>Y</td>
+<td>N/A</td>
+<td>245</td>
+<td>Included only if the set/get operation specified <strong>properties</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>10</td>
+<td>Unique identifier of the parameter used for reporting and analytics.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>pin</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The property identification number (within Modbus service) to hold the parameter value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reportconfig-min-11">
+<span id="reportconfig"></span><h4>5.2.2.2. reportConfig (MIN 11)<a class="headerlink" href="#reportconfig-min-11" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#setreportconfig"><span class="std std-ref">setReportConfig (MIN 13)</span></a> or <a class="reference internal" href="#getreportconfig"><span class="std std-ref">getReportConfig (MIN 14)</span></a> or <a class="reference internal" href="#delreportconfig"><span class="std std-ref">delReportConfig (MIN 15)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id19">
+<caption><span class="caption-text">reportConfig</span><a class="headerlink" href="#id19" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>reports</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of periodic <strong>reports</strong> configured (<em>set</em>) or requested (<em>get</em>).</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>reportId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>Unique identifier of the <strong>report</strong> associated with particular parameter values.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramIds</li>
+</ul>
+</td>
+<td>string</td>
+<td>N</td>
+<td>N</td>
+<td>255</td>
+<td>Comma-separated list of <strong>parameter</strong> ids to be included in the <strong>report</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>interval</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>20</td>
+<td>The periodic <strong>report</strong> interval, in <em>seconds</em>.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>timeOfDay</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>18</td>
+<td><em>Optional</em> time of day, in seconds (0..86400) to create a snapshot that will be reported within the <strong>timeOfDayWindow</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>timeOfDayWindow</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>13</td>
+<td>Included if using <strong>timeOfDay</strong>.  Window, in seconds, within which the <strong>report</strong> will be sent offset relative to the <strong>timeOfDay</strong> snapshot.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>msgBitMap</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+<td>ASCII string of <em>metadata</em> fields to include, overriding <strong>defaultMsgBitmap</strong> value.  See <a class="reference internal" href="configuration.html#msgbitmap"><span class="std std-ref">Optional Metadata Fields Configuration (MsgBitmap, defaultMsgBitmap)</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="alertconfig-min-12">
+<span id="alertconfig"></span><h4>5.2.2.3. alertConfig (MIN 12)<a class="headerlink" href="#alertconfig-min-12" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#setalertconfig"><span class="std std-ref">setAlertConfig (MIN 16)</span></a> or <a class="reference internal" href="#getalertconfig"><span class="std std-ref">getAlertConfig (MIN 17)</span></a> or <a class="reference internal" href="#delalertconfig"><span class="std std-ref">delAlertConfig (MIN 18)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id20">
+<caption><span class="caption-text">alertConfig</span><a class="headerlink" href="#id20" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alerts</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>alerts</strong> configured (<em>set</em>) or requested (<em>get</em>).</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>alertId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>Unique identifier of the <strong>alert</strong> associated with a particular parameter trigger.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>The ID of the trigger <strong>parameter</strong> on which the analytics is run.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramIds</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>N</td>
+<td>255</td>
+<td>Comma-separated list of <strong>parameter</strong> values to be included in the <strong>alert</strong>, in addition to the trigger parameter.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>minON</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td>The lower threshold against which the parameter is tested.  If the value drops below this, an <strong>alertON</strong> is sent.  The parameter stays in the alert state until the value rises above <strong>minOFF</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>minOFF</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td><p class="first">The normal low threshold against which the parameter is tested.  If the parameter is in the alert state and rises above this value, the alert state is off and an <strong>alertOFF</strong> is sent.</p>
+<p class="last">If <em>not</em> specified, <strong>minON</strong> will be used as the return to normal trigger.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>maxON</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td>The upper threshold against which the parameter is tested.  If the value rises above this, an <strong>alertON</strong> is sent.  The parameter stays in the alert state until the value drops below <strong>maxOFF</strong>.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>maxOFF</li>
+</ul>
+</td>
+<td>int</td>
+<td>Y</td>
+<td>Y</td>
+<td>32</td>
+<td><p class="first">The normal high threshold against which the parameter is tested.  If the parameter is in the alert state and drops below this value, the alert state is off and an <strong>alertOFF</strong> is sent.</p>
+<p class="last">If <em>not</em> specified, <strong>maxON</strong> will be used as the return to normal trigger.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>change</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td>The absolute value difference from the last reported value, which will trigger a <strong>alertChange</strong> to be sent.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>msgBitMap</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>Y</td>
+<td>2</td>
+<td>ASCII string of <em>metadata</em> fields to include, overriding <strong>defaultMsgBitmap</strong> value.  See <a class="reference internal" href="configuration.html#msgbitmap"><span class="std std-ref">Optional Metadata Fields Configuration (MsgBitmap, defaultMsgBitmap)</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="readparamresults-min-13">
+<span id="readparamresults"></span><h4>5.2.2.4. readParamResults (MIN 13)<a class="headerlink" href="#readparamresults-min-13" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#readparam"><span class="std std-ref">readParam (MIN 19)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id21">
+<caption><span class="caption-text">readParamResults</span><a class="headerlink" href="#id21" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>parameter</strong> values being queried.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>Unique identifier of the <strong>parameter</strong> to query.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>errText</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>Verbose error text if a read error occurred.</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Response timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="writeparamresults-min-14">
+<span id="writeparamresults"></span><h4>5.2.2.5. writeParamResults (MIN 14)<a class="headerlink" href="#writeparamresults-min-14" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#writeparam"><span class="std std-ref">writeParam (MIN 20)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id22">
+<caption><span class="caption-text">writeParamResults</span><a class="headerlink" href="#id22" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of <strong>parameter</strong> values being queried.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>10</td>
+<td>Unique identifier of the <strong>parameter</strong> to query.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>errText</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>Verbose error text if a read error occurred.</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Response timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="readdataresults-min-15">
+<span id="readdataresults"></span><h4>5.2.2.6. readDataResults (MIN 15)<a class="headerlink" href="#readdataresults-min-15" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#readdata"><span class="std std-ref">readData (MIN 21)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id23">
+<caption><span class="caption-text">readDataResults</span><a class="headerlink" href="#id23" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>results</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of values being queried.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifier of the <strong>device</strong> in the configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">The register type:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">inputRegister</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holdingRegister</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>The starting address to read.  (May be offset if <strong>device</strong> is configured with <strong>plcBaseAddress</strong>)</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>4</td>
+<td><div class="first last line-block">
+<div class="line">Data conversion to apply to the requested value when responding.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">boolean</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">float32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">base64string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">raw</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Response timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="writedataresults-min-16">
+<span id="writedataresults"></span><h4>5.2.2.7. writeDataResults (MIN 16)<a class="headerlink" href="#writedataresults-min-16" title="Permalink to this headline">¶</a></h4>
+<p>Response to <a class="reference internal" href="#writedata"><span class="std std-ref">writeData (MIN 22)</span></a>.</p>
+<table border="1" class="colwidths-given docutils" id="id24">
+<caption><span class="caption-text">writeDataResults</span><a class="headerlink" href="#id24" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>results</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>The list of values that were to be written.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>deviceId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifier of the <strong>device</strong> in the configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>registerType</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>2</td>
+<td><div class="first last line-block">
+<div class="line">The register type:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">coil</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">input</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">inputRegister</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">holdingRegister</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>address</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>The starting address to write.  (May be offset if <strong>device</strong> is configured with <strong>plcBaseAddress</strong>)</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>encoding</li>
+</ul>
+</td>
+<td>enum</td>
+<td>N</td>
+<td>Y</td>
+<td>4</td>
+<td><div class="first last line-block">
+<div class="line">Data conversion to apply to the requested value when responding.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">boolean</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt8</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">uInt16</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">int32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">float32</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">base64string</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">raw</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>writeTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>errText</li>
+</ul>
+</td>
+<td>string</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>Verbose error text if a read error occurred.</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Response timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="periodicreport-min-100">
+<span id="periodicreport"></span><h4>5.2.2.8. periodicReport (MIN 100)<a class="headerlink" href="#periodicreport-min-100" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically at the prescribed time interval or offset from Time of Day.</p>
+<table border="1" class="colwidths-given docutils" id="id25">
+<caption><span class="caption-text">periodicReport</span><a class="headerlink" href="#id25" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>reportId</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Unique identifer of the <strong>report</strong>.</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Report timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>A set of parameter values defined by the <strong>report</strong> configuration.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The <code class="docutils literal notranslate"><span class="pre">paramId</span></code> being reported.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>latitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>24</td>
+<td><p class="first">Latitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-odd"><td>longitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>25</td>
+<td><p class="first">Longitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-even"><td>altitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>20</td>
+<td>Altitude in meters above sea level, if present in <em>metadata</em> options.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="paramalerton-min-101">
+<span id="paramalerton"></span><h4>5.2.2.9. paramAlertON (MIN 101)<a class="headerlink" href="#paramalerton-min-101" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically when an <strong>alert</strong> condition has been triggered and is outside normal operating range.</p>
+<table border="1" class="colwidths-given docutils" id="id26">
+<caption><span class="caption-text">paramAlertON</span><a class="headerlink" href="#id26" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>paramId</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td><strong>Parameter</strong> for which the <strong>alert</strong> has been raised.</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value of the triggering parameter with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>A set of parameter values defined by the <strong>alert</strong> configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The <code class="docutils literal notranslate"><span class="pre">paramId</span></code> being reported.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>paramTimestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert parameter timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>latitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>24</td>
+<td><p class="first">Latitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-odd"><td>longitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>25</td>
+<td><p class="first">Longitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-even"><td>altitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>20</td>
+<td>Altitude in meters above sea level, if present in <em>metadata</em> options.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="paramalertoff-min-102">
+<span id="paramalertoff"></span><h4>5.2.2.10. paramAlertOFF (MIN 102)<a class="headerlink" href="#paramalertoff-min-102" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically when an <strong>alert</strong> condition has returned to the normal operating range.</p>
+<table border="1" class="colwidths-given docutils" id="id27">
+<caption><span class="caption-text">paramAlertOFF</span><a class="headerlink" href="#id27" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>paramId</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td><strong>Parameter</strong> for which the <strong>alert</strong> has been raised.</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value of the triggering parameter with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>A set of parameter values defined by the <strong>alert</strong> configuration.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The <code class="docutils literal notranslate"><span class="pre">paramId</span></code> being reported.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>paramTimestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert parameter timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>latitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>24</td>
+<td><p class="first">Latitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-odd"><td>longitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>25</td>
+<td><p class="first">Longitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-even"><td>altitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>20</td>
+<td>Altitude in meters above sea level, if present in <em>metadata</em> options.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="paramalertchange-min-103">
+<span id="paramalertchange"></span><h4>5.2.2.11. paramAlertChange (MIN 103)<a class="headerlink" href="#paramalertchange-min-103" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically when an <strong>alert</strong> condition has changed from the last reported value.</p>
+<table border="1" class="colwidths-given docutils" id="id28">
+<caption><span class="caption-text">paramAlertChange</span><a class="headerlink" href="#id28" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>paramId</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td><strong>Parameter</strong> for which the <strong>alert</strong> has been raised.</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value of the triggering parameter with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>changeValue</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Relative change from prior value of the triggering parameter with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>parameters</td>
+<td>array</td>
+<td>Y</td>
+<td>N</td>
+<td>100</td>
+<td>A set of parameter values defined by the <strong>alert</strong> configuration.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramId</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>N/A</td>
+<td>8</td>
+<td>The <code class="docutils literal notranslate"><span class="pre">paramId</span></code> being reported.</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li>value</li>
+</ul>
+</td>
+<td><p class="first">dynamic</p>
+<ul class="last simple">
+<li>unsignedint</li>
+<li>signedint</li>
+<li>string</li>
+<li>data</li>
+</ul>
+</td>
+<td>N</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><p class="first">Value with data type corresponding to the parameter encoding:</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16</span></code> use <em>unsignedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code>, <code class="docutils literal notranslate"><span class="pre">int16</span></code>, <code class="docutils literal notranslate"><span class="pre">int32</span></code> use <em>signedInt</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> use <em>string</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> uses <em>data</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li>paramTimestamp</li>
+</ul>
+</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>N/A</td>
+<td>31</td>
+<td><p class="first">Parameter timestamp in seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-even"><td>paramTimestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert parameter timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if <code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>latitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>24</td>
+<td><p class="first">Latitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-even"><td>longitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>25</td>
+<td><p class="first">Longitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-odd"><td>altitude</td>
+<td>signedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>20</td>
+<td>Altitude in meters above sea level, if present in <em>metadata</em> options.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="positionchangealert-min-104">
+<span id="positionchangealert"></span><h4>5.2.2.12. positionChangeAlert (MIN 104)<a class="headerlink" href="#positionchangealert-min-104" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically when movement has been detected and <em>geolocation</em> alerts are configured.</p>
+<table border="1" class="colwidths-given docutils" id="id29">
+<caption><span class="caption-text">positionChangeAlert</span><a class="headerlink" href="#id29" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>latitude</td>
+<td>signedint</td>
+<td>N</td>
+<td>Y</td>
+<td>24</td>
+<td><p class="first">Latitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-odd"><td>longitude</td>
+<td>signedint</td>
+<td>N</td>
+<td>Y</td>
+<td>25</td>
+<td><p class="first">Longitude in milliminutes, if present in <em>metadata</em> options.</p>
+<p class="last">Divide by 60000 to get decimal degrees (round to 6 decimal places precision).</p>
+</td>
+</tr>
+<tr class="row-even"><td>altitude</td>
+<td>signedint</td>
+<td>N</td>
+<td>Y</td>
+<td>20</td>
+<td>Altitude in meters above sea level, if present in <em>metadata</em> options.</td>
+</tr>
+<tr class="row-odd"><td>speed</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td>Speed of travel in km/h.</td>
+</tr>
+<tr class="row-even"><td>distance</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>31</td>
+<td>Distance moved in tenths of meters, from previous location.</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Alert timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="error-min-200">
+<span id="error"></span><h4>5.2.2.13. error (MIN 200)<a class="headerlink" href="#error-min-200" title="Permalink to this headline">¶</a></h4>
+<p>Sent automatically when a Modbus communication or configuration problem is detected.</p>
+<table border="1" class="colwidths-given docutils" id="id30">
+<caption><span class="caption-text">error</span><a class="headerlink" href="#id30" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field Name</th>
+<th class="head">Type</th>
+<th class="head">Optional</th>
+<th class="head">Fixed</th>
+<th class="head">Size</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>err</td>
+<td>unsignedint</td>
+<td>N</td>
+<td>Y</td>
+<td>8</td>
+<td><div class="first last line-block">
+<div class="line">Error code.</div>
+<div class="line">0 - OK / Device communication recovered</div>
+<div class="line">1 - Device communication lost</div>
+<div class="line">2 - ReportingId not found in configuration</div>
+<div class="line">3 - AlertId not found in configuration</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>errText</td>
+<td>string</td>
+<td>N</td>
+<td>N</td>
+<td>100</td>
+<td>Verbose error text corresponding to the error code.</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>unsignedint</td>
+<td>Y</td>
+<td>Y</td>
+<td>31</td>
+<td><p class="first">Error timestamp, seconds since <em>1970-01-01T00:00:00Z</em>.</p>
+<p class="last">Only present if configured in <em>metadata</em> options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lsfapi.html" title="6. LSF API Integration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="4. Configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

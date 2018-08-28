@@ -1,0 +1,10 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+err,unsignedint,N,Y,8,"| Error code.
+| 0 - OK / Device communication recovered
+| 1 - Device communication lost
+| 2 - ReportingId not found in configuration
+| 3 - AlertId not found in configuration"
+errText,string,N,N,100,Verbose error text corresponding to the error code.
+timestamp,unsignedint,Y,Y,31,"Error timestamp, seconds since *1970-01-01T00:00:00Z*.
+
+Only present if configured in *metadata* options."

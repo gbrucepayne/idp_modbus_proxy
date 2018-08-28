@@ -1,0 +1,4 @@
+Introduction
+############
+
+Modbus is an open, serial (RS-232 or RS-485) protocol derived from the Master/Slave architecture. It is a widely used protocol on industrial electronic devices and in Supervisory Control and Data Acquisition (SCADA) networks.

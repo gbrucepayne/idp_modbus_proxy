@@ -1,0 +1,436 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>3. How to Use &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Configuration" href="configuration.html" />
+    <link rel="prev" title="2. Functional Overview" href="funcspec.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="4. Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="funcspec.html" title="2. Functional Overview"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. How to Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-use">3.1. Example Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-your-configuration-file">3.1.1. Create Your Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-your-build-package">3.1.2. Create Your Build Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-your-package">3.1.3. Install Your Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-message-definition-file">3.1.4. Create Message Definition File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uplode-message-definition-file-to-inmarsat-message-gateway">3.1.5. Uplode Message Definition File to Inmarsat Message Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrieve-data-using-the-isatdata-pro-messaging-api">3.1.6. Retrieve Data Using the IsatData Pro Messaging API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="funcspec.html"
+                        title="previous chapter">2. Functional Overview</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configuration.html"
+                        title="next chapter">4. Configuration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-use">
+<h1>3. How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Obtain manufacturer documentation for your Modbus device indicating <a class="reference internal" href="#modbus-register-definitions"><span class="std std-ref">register definitions</span></a>.</li>
+<li>Determine whether the device will be using RS-232 or RS-485 communication, and the settings for <code class="docutils literal notranslate"><span class="pre">baudRate</span></code> that will be used.</li>
+<li>Determine which register data <strong>parameters</strong> are relevant for your application requirements, and how those are presented.</li>
+<li>Decide which register data are to be captured in periodic <strong>reports</strong>, and at what <em>interval</em> that set of data is most useful.</li>
+<li>Decide which register data are <em>time-critical</em> and need to be captured in real-time with an <strong>alert</strong>.</li>
+<li>Create and save your <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> <strong>config file</strong> using a text editor based on the <a class="reference internal" href="#config-file-template"><span class="std std-ref">template</span></a>.</li>
+<li>Create your build package using <a class="reference internal" href="#solution-studio-package"><span class="std std-ref">Solution Studio</span></a>.</li>
+</ol>
+<div class="section" id="example-use">
+<h2>3.1. Example Use<a class="headerlink" href="#example-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-your-configuration-file">
+<h3>3.1.1. Create Your Configuration File<a class="headerlink" href="#create-your-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>In this example we will be reading data from a weather station.</p>
+<p>Manufacturer documentation: <a class="reference external" href="https://www.lufft.com/products/compact-weather-sensors-293/ws504-umb-smart-weather-sensor-1836/">Lufft Compact Weather Sensor WS504</a></p>
+<p>The WS504 requires some manual configuration to use RS-485 in Modbus mode, using 9600-8-N-1 serial.  The default Modbus Slave address is 1, which will be our <code class="docutils literal notranslate"><span class="pre">networkId=1</span></code>.</p>
+<div class="figure" id="id1">
+<span id="modbus-port"></span><a class="reference internal image-reference" href="_images/lufft_modbus_com.jpg"><img alt="Lufft Weather Station document excerpt" src="_images/lufft_modbus_com.jpg" style="width: 839.25px; height: 330.0px;" /></a>
+<p class="caption"><span class="caption-text">Lufft Weather Station Modbus Communications</span></p>
+</div>
+<p>We are only connecting to one device, so we will set <code class="docutils literal notranslate"><span class="pre">deviceId=1</span></code>.</p>
+<p>We find the registers of interest, which are all read-only values (<code class="docutils literal notranslate"><span class="pre">registerType=analog</span></code>) and all 16-bit signed integers (<code class="docutils literal notranslate"><span class="pre">encoding=int16</span></code>).
+The manufacturer document provides both the PLC base-1 address (<em>register number</em>) and the native <em>register address</em>, so we can use the latter as <code class="docutils literal notranslate"><span class="pre">address</span></code> and
+leave the default configuration <code class="docutils literal notranslate"><span class="pre">plcBaseAddress=0</span></code>.</p>
+<div class="figure" id="id2">
+<span id="modbus-register-definitions"></span><a class="reference internal image-reference" href="_images/lufft_modbus_registers.jpg"><img alt="Lufft Weather Station document excerpt" src="_images/lufft_modbus_registers.jpg" style="width: 716.8px; height: 388.8px;" /></a>
+<p class="caption"><span class="caption-text">Lufft Weather Station Modbus Registers Example</span></p>
+</div>
+<p>And we map them to <strong>parameters</strong> using <code class="docutils literal notranslate"><span class="pre">paramId</span></code>, <code class="docutils literal notranslate"><span class="pre">registerType</span></code>, <code class="docutils literal notranslate"><span class="pre">address</span></code> and <code class="docutils literal notranslate"><span class="pre">encoding</span></code>:</p>
+<span id="config-file-template"></span><table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Configuration File Template</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data/Sensor</th>
+<th class="head">Register Type</th>
+<th class="head">Register Number</th>
+<th class="head">Register Address</th>
+<th class="head">Units</th>
+<th class="head">Decoding</th>
+<th class="head">Min</th>
+<th class="head">Max</th>
+<th class="head">paramId</th>
+<th class="head">registerType</th>
+<th class="head">address</th>
+<th class="head">encoding</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Air temperature</td>
+<td>Read-only (Input Register)</td>
+<td>32</td>
+<td>31</td>
+<td>Celsius</td>
+<td>Factor 10, signed</td>
+<td>-500</td>
+<td>600</td>
+<td>1</td>
+<td>analog</td>
+<td>31</td>
+<td>int16</td>
+</tr>
+<tr class="row-odd"><td>Relative humidity</td>
+<td>Read-only (Input Register)</td>
+<td>11</td>
+<td>10</td>
+<td>%RH</td>
+<td>Factor 10, signed</td>
+<td>0</td>
+<td>1000</td>
+<td>2</td>
+<td>analog</td>
+<td>10</td>
+<td>int16</td>
+</tr>
+<tr class="row-even"><td>Relative air pressure</td>
+<td>Read-only (Input Register)</td>
+<td>15</td>
+<td>14</td>
+<td>hPa</td>
+<td>Factor 10, signed</td>
+<td>3000</td>
+<td>12000</td>
+<td>3</td>
+<td>analog</td>
+<td>14</td>
+<td>int16</td>
+</tr>
+<tr class="row-odd"><td>Wind speed, average</td>
+<td>Read-only (Input Register)</td>
+<td>87</td>
+<td>86</td>
+<td>km/h</td>
+<td>Factor 10, signed</td>
+<td>0</td>
+<td>2700</td>
+<td>4</td>
+<td>analog</td>
+<td>86</td>
+<td>int16</td>
+</tr>
+<tr class="row-even"><td>Wind direction</td>
+<td>Read-only (Input Register)</td>
+<td>19</td>
+<td>18</td>
+<td>degrees</td>
+<td>Factor 10, signed</td>
+<td>0</td>
+<td>3599</td>
+<td>5</td>
+<td>analog</td>
+<td>18</td>
+<td>int16</td>
+</tr>
+</tbody>
+</table>
+<p>We want to send:</p>
+<ul class="simple">
+<li>All our parameters as a <strong>report</strong> (<code class="docutils literal notranslate"><span class="pre">reportingId=1</span></code>) every hour (<code class="docutils literal notranslate"><span class="pre">interval=3600</span></code>)</li>
+<li>Also send an immediate <strong>alert</strong> (<code class="docutils literal notranslate"><span class="pre">alertId=1</span></code>) if the temperature (<code class="docutils literal notranslate"><span class="pre">paramId=1</span></code>) goes above 35 degrees Celsius and another alert when temperature returns below 30 Celsius.
+The manufacturer document tells us the Modbus register contains temperature in degrees Celsius with a <em>factor 10</em>, so our thresholds will be <code class="docutils literal notranslate"><span class="pre">highON=350</span></code> and <code class="docutils literal notranslate"><span class="pre">highOFF=300</span></code></li>
+</ul>
+<p>In order to get real-time temperature alerts, we will set <code class="docutils literal notranslate"><span class="pre">pollInterval=10</span></code> seconds.</p>
+<p id="example-config-dat">Our resulting <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">Example</span> <span class="n">Modbus</span> <span class="n">Proxy</span> <span class="n">configuration</span> <span class="k">for</span> <span class="n">Lufft</span> <span class="n">WS504</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">PORTS</span> <span class="o">*/</span>
+<span class="n">port</span><span class="o">=</span><span class="n">rs485</span><span class="p">;</span><span class="n">baudRate</span><span class="o">=</span><span class="mi">9600</span><span class="p">;</span><span class="n">parity</span><span class="o">=</span><span class="n">none</span><span class="p">;</span><span class="n">mode</span><span class="o">=</span><span class="n">rtu</span>
+<span class="o">/*</span> <span class="n">DEVICES</span> <span class="o">*/</span>
+<span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">networkId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">port</span><span class="o">=</span><span class="n">rs485</span><span class="p">;</span><span class="n">pollInterval</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="n">byteOrder</span><span class="o">=</span><span class="n">msb</span><span class="p">;</span><span class="n">wordOrder</span><span class="o">=</span><span class="n">msw</span><span class="p">;</span><span class="n">serialRxTimeout</span><span class="o">=</span><span class="mi">1000</span><span class="p">;</span><span class="n">serialTxTimeout</span><span class="o">=</span><span class="mi">1000</span><span class="p">;</span><span class="n">plcBaseAddress</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">retries</span><span class="o">=</span><span class="mi">3</span>
+<span class="o">/*</span> <span class="n">PARAMETERS</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="n">Temperature</span> <span class="ow">in</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">register</span> <span class="mi">32</span> <span class="o">*/</span>
+<span class="n">paramId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">registerType</span><span class="o">=</span><span class="n">analog</span><span class="p">;</span><span class="n">address</span><span class="o">=</span><span class="mi">31</span><span class="p">;</span><span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<span class="o">/*</span> <span class="n">Humidity</span> <span class="ow">in</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">register</span> <span class="mi">11</span> <span class="o">*/</span>
+<span class="n">paramId</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">registerType</span><span class="o">=</span><span class="n">analog</span><span class="p">;</span><span class="n">address</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<span class="o">/*</span> <span class="n">Air</span> <span class="n">Pressure</span> <span class="ow">in</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">register</span> <span class="mi">15</span> <span class="o">*/</span>
+<span class="n">paramId</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span><span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">registerType</span><span class="o">=</span><span class="n">analog</span><span class="p">;</span><span class="n">address</span><span class="o">=</span><span class="mi">14</span><span class="p">;</span><span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<span class="o">/*</span> <span class="n">Wind</span> <span class="n">speed</span> <span class="ow">in</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">register</span> <span class="mi">87</span> <span class="o">*/</span>
+<span class="n">paramId</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span><span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">registerType</span><span class="o">=</span><span class="n">analog</span><span class="p">;</span><span class="n">address</span><span class="o">=</span><span class="mi">86</span><span class="p">;</span><span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<span class="o">/*</span> <span class="n">Wind</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">register</span> <span class="mi">19</span> <span class="o">*/</span>
+<span class="n">paramId</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">registerType</span><span class="o">=</span><span class="n">analog</span><span class="p">;</span><span class="n">address</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span><span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<span class="o">/*</span> <span class="n">REPORTS</span> <span class="o">*/</span>
+<span class="n">reportingId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">interval</span><span class="o">=</span><span class="mi">3600</span><span class="p">;</span><span class="n">paramIds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+<span class="o">/*</span> <span class="n">ALERTS</span> <span class="o">*/</span>
+<span class="n">alertId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">paramId</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">maxON</span><span class="o">=</span><span class="mi">350</span><span class="p">;</span><span class="n">maxOFF</span><span class="o">=</span><span class="mi">300</span><span class="p">;</span><span class="n">paramIds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-your-build-package">
+<span id="solution-studio-package"></span><h3>3.1.2. Create Your Build Package<a class="headerlink" href="#create-your-build-package" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use of the tools described below requires that you have a PC with a modern version of Windows OS.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Download the latest <strong>Modbus Proxy</strong> package file from <em>TBD</em> or contact your <em>Inmarsat Representative</em>.  Make sure you select the correct build for <strong>IDP</strong> or <strong>ST</strong> terminals.</p>
+</li>
+<li><p class="first">Download the latest terminal firmware package for your <strong>terminal model</strong> from <a class="reference external" href="http://support.skywave.com/Support_AllDownload.aspx">ORBCOMM</a> or contact your <em>Inmarsat Representative</em>.</p>
+</li>
+<li><p class="first">Download and install the latest <strong>Developer Toolkit</strong> from ORBCOMM or contact your <em>Inmarsat Representative</em>.</p>
+</li>
+<li><p class="first">Open <strong>Solution Studio</strong> from the <strong>Developer Toolkit</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Select <span class="guilabel">Add</span>, browse to the firmware package file and add it.</li>
+<li>Select <span class="guilabel">Add</span>, browse to the Modbus Proxy package file and add it.</li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">Modbus</span></code> in the <em>Services</em> pane, then click <span class="guilabel">Properties</span></li>
+</ol>
+<ol class="arabic" id="changedefaultmsgbitmap">
+<li><p class="first">Select <span class="guilabel">Add</span> then select <code class="docutils literal notranslate"><span class="pre">004</span> <span class="pre">-</span> <span class="pre">defaultMsgBitMap</span></code> and set the value to <code class="docutils literal notranslate"><span class="pre">04</span></code> to enable <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> on <strong>reports</strong> and <strong>alerts</strong></p>
+</li>
+<li><p class="first">Return to the main GUI window by clicking <span class="guilabel">OK</span> when prompted.</p>
+</li>
+<li><p class="first">Click <span class="guilabel">Edit</span>, then click <span class="guilabel">Add</span> and browse to your <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file.  Click <span class="guilabel">OK</span> until you return to the main window.</p>
+</li>
+<li><p class="first">Select <span class="menuselection">Edit ‣ Core Service Properties</span> then set the following similar to <code class="docutils literal notranslate"><span class="pre">defaultMsgBitMap</span></code> above:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="menuselection">Service ‣ 016-system</span> –&gt; <code class="docutils literal notranslate"><span class="pre">001</span> <span class="pre">-</span> <span class="pre">executionWatchdogTimeout</span></code> ==&gt; <code class="docutils literal notranslate"><span class="pre">30000</span></code></li>
+<li><span class="menuselection">Service ‣ 016-system</span> –&gt; <code class="docutils literal notranslate"><span class="pre">003</span> <span class="pre">-</span> <span class="pre">autoGCMemThreshold</span></code> ==&gt; <code class="docutils literal notranslate"><span class="pre">5</span></code></li>
+<li><span class="menuselection">Service ‣ 023-log</span> –&gt; <code class="docutils literal notranslate"><span class="pre">031</span> <span class="pre">-</span> <span class="pre">traceSuppress3</span></code> ==&gt; <code class="docutils literal notranslate"><span class="pre">1B</span> <span class="pre">14</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Click <span class="guilabel">OK</span> until you return to the main window.</p>
+</li>
+<li><p class="first">Select <span class="menuselection">Edit ‣ Post-Load Commands</span> and type the following, depending on your terminal model:</p>
+<blockquote>
+<div><table border="1" class="docutils" id="id4">
+<caption><span class="caption-text">Post-load Commands (when using RS485 for Modbus)</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>IDP series</strong></td>
+<td><strong>ST series</strong></td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">channel</span> <span class="pre">main</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">baud</span> <span class="pre">9600</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">enable</span></code></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">channel</span> <span class="pre">main</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">baud</span> <span class="pre">9600</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">serial</span> <span class="pre">enable</span></code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Select <span class="menuselection">File ‣ Export Package</span> and save the resulting build file e.g. <code class="docutils literal notranslate"><span class="pre">my_modbus.idppkg</span></code>.</p>
+</li>
+<li><p class="first">Select <span class="menuselection">File ‣ Export Message Definitions</span> and save the resulting <code class="docutils literal notranslate"><span class="pre">my_modbus.idpmsg</span></code> file.</p>
+</li>
+<li><p class="first">Save your Solution Studio file e.g. <code class="docutils literal notranslate"><span class="pre">my_modbus.idpsln</span></code>.</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Best practice would be to use a file naming convention that includes a version and/or date.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="install-your-package">
+<h3>3.1.3. Install Your Package<a class="headerlink" href="#install-your-package" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Connect to your terminal’s main serial port using <strong>Console</strong> from the <strong>Developer Toolkit</strong>.  Ensure your terminal is powered up.</p>
+</li>
+<li><p class="first">Select <span class="menuselection">File ‣ Open ‣ Open Connection</span> then select your <strong>COM</strong> port and Baud rate (default 9600).  Click <span class="guilabel">OK</span>.</p>
+</li>
+<li><p class="first">Confirm that you see a <code class="docutils literal notranslate"><span class="pre">shell&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code>, or <code class="docutils literal notranslate"><span class="pre">boot#</span></code> prompt.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You may need to power cycle the terminal to get the <code class="docutils literal notranslate"><span class="pre">boot</span> <span class="pre">loader</span></code> message, then send 2 <em>break</em> (<code class="docutils literal notranslate"><span class="pre">CTRL-B</span></code>) commands within 5 seconds to get the <code class="docutils literal notranslate"><span class="pre">boot#</span></code> prompt.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Drag and drop your <strong>build package</strong> onto the black area of the screen.  Confirm that you see it begin the load process.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If prompted to <em>Format the flash file system</em>, select <span class="guilabel">OK</span>.</li>
+</ul>
+<div class="figure" id="id5">
+<a class="reference internal image-reference" href="_images/terminal-formatflash.jpg"><img alt="Format the flash file system" src="_images/terminal-formatflash.jpg" style="width: 368.0px; height: 184.0px;" /></a>
+<p class="caption"><span class="caption-text">Format the flash file system</span></p>
+</div>
+<ul class="simple">
+<li>Wait for the progress bar to complete.</li>
+</ul>
+<div class="figure" id="id6">
+<a class="reference internal image-reference" href="_images/terminal-packageload.jpg"><img alt="Loading the package using Console" src="_images/terminal-packageload.jpg" style="width: 722.25px; height: 462.0px;" /></a>
+<p class="caption"><span class="caption-text">Loading the package file using Console</span></p>
+</div>
+<ul class="simple">
+<li>If you see the <code class="docutils literal notranslate"><span class="pre">#</span></code> prompt, enter the command <code class="docutils literal notranslate"><span class="pre">start</span></code>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">If you are running Modbus on the main rs232, you will see a <code class="docutils literal notranslate"><span class="pre">detaching</span> <span class="pre">shell</span></code> message, then strange characters.</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can set up trace/log output on a spare serial port of the terminal.  For example, use rs232 for trace when rs485 is connected to your Modbus device.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Connect the configured serial port to your Modbus device.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="create-message-definition-file">
+<h3>3.1.4. Create Message Definition File<a class="headerlink" href="#create-message-definition-file" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Contact your <em>Inmarsat Representative</em> to send your <strong>idpmsg</strong> file to have merged with default message definitions.</li>
+</ol>
+</div>
+<div class="section" id="uplode-message-definition-file-to-inmarsat-message-gateway">
+<h3>3.1.5. Uplode Message Definition File to Inmarsat Message Gateway<a class="headerlink" href="#uplode-message-definition-file-to-inmarsat-message-gateway" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Your service provider can upload/associate the <strong>message definition file</strong> to your IsatData Pro <strong>mailbox</strong> and provide your authorization credentials for <strong>OTA API</strong> use.</li>
+</ol>
+</div>
+<div class="section" id="retrieve-data-using-the-isatdata-pro-messaging-api">
+<h3>3.1.6. Retrieve Data Using the IsatData Pro Messaging API<a class="headerlink" href="#retrieve-data-using-the-isatdata-pro-messaging-api" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Visit <a class="reference external" href="https://developer.inmarsat.com">Inmarsat Developer Portal</a></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="4. Configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="funcspec.html" title="2. Functional Overview"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

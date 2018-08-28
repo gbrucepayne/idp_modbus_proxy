@@ -1,0 +1,31 @@
+PIN,Name,Description,Type,Storage Class,Default Value
+1,logsBitmap,"Hexadecimal binary mask to enable/disable logs.
+
+* Errors
+* Warnings
+* Debug",string,Config,E0 (error/warning)
+3,lostComMsgDebounce,Duration (seconds) to ignore subsequent communication losses after sending an *alert*.,unsignedInt,Config,120
+4,defaultMsgBitmap,"Hexadecimal binary mask to include metadata fields in **reports** and **alerts**.
+
+* latitude
+* longitude
+* speed
+* altitude
+* distance
+* timestamp
+* paramTimestamp
+* (reserved)",string,Config,FF (all enabled)
+5,changeAlarmDebounce,Duration (seconds) to ignore subsequent *change* detections after sending an **alert**.,"| unsignedInt
+| max=3600",Config,120
+6,posAlarmDebounce,Duration (seconds) to ignore subsequent *geolocation* detections after sending an **alert**.,"| unsignedInt
+| max=86400",Config,3600
+7,isLPM,Enables power saving operation.,boolean,Config,FALSE
+8,refLatitude,Latitude (milliminutes) used as a reference point for *geolocation* alerts.,"| signedInt
+| min=-5400000
+| max=5400000",Config,0
+9,refLongitude,Longitude (milliminutes) used as a reference point for *geolocation* alerts.,"| signedInt
+| min=-10800000
+| max=10800000",Config,0
+10,assetMoveDist,Distance threshold (meters) used to trigger *geolocation* alerts.,"| unsignedInt
+| 0 = disabled",Config,0
+11..255,Output1..Output245,Parameters values mapped to Properties,string,Volatile,""""""

@@ -1,0 +1,6 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+alertId,unsignedint,Y,Y,31,"If included, specifies the **alert** configuration being deleted.
+
+.. warning::
+    If *not* included, all alerts configurations will be deleted.
+"

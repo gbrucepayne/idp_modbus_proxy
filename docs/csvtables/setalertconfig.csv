@@ -1,0 +1,15 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+alerts,array,N,N,100,The list of **alerts** to configure.
+   * alertId,unsignedint,N,Y,31,Unique identifier of the **alert** associated with a particular parameter trigger.
+   * paramId,unsignedint,N,Y,10,The ID of the trigger **parameter** on which the analytics is run.
+   * paramIds,string,Y,N,255,"Comma-separated list of **parameter** values to be included in the **alert**, in addition to the trigger parameter."
+   * minON,int,Y,Y,32,"The lower threshold against which the parameter is tested.  If the value drops below this, an **alertON** is sent.  The parameter stays in the alert state until the value rises above **minOFF**."
+   * minOFF,int,Y,Y,32,"The normal low threshold against which the parameter is tested.  If the parameter is in the alert state and rises above this value, the alert state is off and an **alertOFF** is sent.
+
+If *not* specified, **minON** will be used as the return to normal trigger."
+   * maxON,int,Y,Y,32,"The upper threshold against which the parameter is tested.  If the value rises above this, an **alertON** is sent.  The parameter stays in the alert state until the value drops below **maxOFF**."
+   * maxOFF,int,Y,Y,32,"The normal high threshold against which the parameter is tested.  If the parameter is in the alert state and drops below this value, the alert state is off and an **alertOFF** is sent.
+
+If *not* specified, **maxON** will be used as the return to normal trigger."
+   * change,unsignedint,Y,Y,31,"The absolute value difference from the last reported value, which will trigger a **alertChange** to be sent."
+   * msgBitMap,string,Y,Y,2,"ASCII string of *metadata* fields to include, overriding **defaultMsgBitmap** value.  See :ref:`msgbitmap`."

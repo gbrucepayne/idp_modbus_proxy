@@ -1,0 +1,30 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+addresses,array,N,N,100,The list of Modbus register addresses to be read.
+   * deviceId,unsignedint,N,Y,8,Unique identifier of the **device** in the configuration.
+   * registerType,enum,N,Y,2,"| The register type:
+| ``coil``
+| ``input``
+| ``inputRegister``
+| ``holdingRegister``"
+   * address,unsignedint,N,Y,31,The starting address to write.  (May be offset if **device** is configured with **plcBaseAddress**)
+   * encoding,enum,N,Y,4,"| Data conversion to apply to the submitted (*string*) **value** when writing to the register.
+| ``boolean``
+| ``int8``
+| ``uInt8``
+| ``int16``
+| ``uInt16``
+| ``int32``
+| ``float32``
+| ``string``
+| ``base64string``
+| ``raw``"
+   * value,string,N,N,255,"The value to write, presented as an ASCII string.
+
+* For sending raw data, the string must be represented as space separated hex values e.g. ""0A 1B 2C""
+* For sending Boolean data, the string must be represented as a number e.g. ""1"" for *true*"
+   * byteOrder,enum,Y,Y,1,"| Byte order for interpreting data response.
+| ``msb`` (*default*) most significant byte
+| ``lsb`` least significant byte"
+   * wordOrder,enum,Y,Y,1,"| Word order (16-bit blocks) for interpreting data response.
+| ``msw`` (*default*) most significant word
+| ``lsw`` least significant word"

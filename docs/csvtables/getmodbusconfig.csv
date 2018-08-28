@@ -1,0 +1,8 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+port,enum,Y,Y,3,"| If included, specifies the **port** configuration being queried. If *not* included, all ports configurations will be returned.
+| ``rs232``
+| ``rs485``
+| ``rs232aux``"
+deviceId,unsignedint,Y,Y,8,"If included, specifies the **device** configuration being queried.  If *not* included, all device configurations will be returned."
+paramId,unsignedint,Y,Y,10,"If included, specifies the **parameter** configuration being queried.  If *not* included, all parameters configurations will be returned."
+properties,boolean,Y,Y,1,"If included, **properties** configured will be returned."

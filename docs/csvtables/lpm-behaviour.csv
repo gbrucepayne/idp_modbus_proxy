@@ -1,0 +1,13 @@
+Terminal Activity,Default Behaviour,LPM Behaviour,LSF API Property Interaction [SIN:PIN]
+Incoming Messages,Immediate,Check every 60 seconds,"| Exit LPM [27:11]=0
+| Enter LPM [27:11]=6"
+Geolocation checks,Every 60 seconds,Every 360 seconds,"| Exit LPM [20:15]=2
+| Enter LPM [20:15]=60"
+Processing,Realtime,Delayed,"| Exit LPM [16:4]=0
+| Enter LPM [16:4]=1"
+LED indicator,Flashes every 4 minutes,No flash,"| Exit LPM [16:6]=0; [16:7]=4
+| Enter LPM [16:6]=1; [16:7]=0"
+RS232,Always on,Switch off when no data,"| Exit LPM [22:6]=1; [22:15]=2; [22:43]=1; [22:44]=2
+| Enter LPM [22:6]=2; [22:15]=0; [22:43]=2; [22:44]=0"
+Satellite Blockage Handling,"Always reacquire (Mobile, Powered)","Attempt every hour (Mobile, Parked)","| Exit LPM [27:10]=1
+| Enter LPM [27:10]=5"

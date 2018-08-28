@@ -1,0 +1,4 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+parameters,array,N,N,100,The list of **parameter** values being written.
+   * paramId,unsignedint,N,Y,10,Unique identifier of the **parameter** to write.
+   * value,string,N,N,255,"The value, in *string* format, to write to the **parameter**."

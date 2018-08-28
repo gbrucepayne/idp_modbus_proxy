@@ -1,0 +1,429 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2. Functional Overview &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. How to Use" href="usage.html" />
+    <link rel="prev" title="1. Overview" href="overview.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="3. How to Use"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="1. Overview"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Functional Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#operation">2.1. Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modbus-device-communication">2.1.1. Modbus Device Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#periodic-reports">2.1.1.1. Periodic Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-of-day-reports">2.1.1.2. Time of Day Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handling">2.1.1.3. Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geolocation-and-movement-alerts">2.1.2. Geolocation and Movement Alerts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#low-power-operation">2.1.3. Low Power Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata">2.1.4. Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-summary">2.2. Feature Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general">2.2.1. General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#physical-communication-layer">2.2.2. Physical Communication Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-communication-modbus-protocol-layer">2.2.3. Data Communication (Modbus Protocol) Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-interpretation">2.2.4. Data Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-reporting-and-register-read-write">2.2.5. Data Reporting and Register Read/Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alerts-and-data-analytics">2.2.6. Alerts and Data Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geolocation">2.2.7. Geolocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2.8. Low Power Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-configuration">2.2.9. Service Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostics">2.2.10. Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lua-service-framework-api">2.2.11. Lua Service Framework API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="overview.html"
+                        title="previous chapter">1. Overview</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="next chapter">3. How to Use</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/funcspec.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functional-overview">
+<h1>2. Functional Overview<a class="headerlink" href="#functional-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="operation">
+<h2>2.1. Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modbus-device-communication">
+<h3>2.1.1. Modbus Device Communication<a class="headerlink" href="#modbus-device-communication" title="Permalink to this headline">¶</a></h3>
+<p>A Modbus <strong>device</strong> (e.g. industrial automation controller, PLC, RTU, meter, etc.) is connected to a serial <strong>port</strong> on the satellite terminal.</p>
+<p>Relevant Modbus register values are mapped to <strong>parameters</strong> that can be used to generate periodic <strong>reports</strong> and real-time <strong>alerts</strong>.</p>
+<p>Each <strong>report</strong> can include multiple data types and values, optimized into a small satellite message.  This delivers a much lower data cost compared to polling native Modbus registers over-the-air.</p>
+<p>Each <strong>alert</strong> is set up to trigger on a <strong>parameter</strong> threshold value, either high/low or a change from the previously reported value.  Alerts can include additional parameter data in addition to the trigger parameter value.</p>
+<p><strong>Parameters</strong> can be queried remotely in addition to periodic reports and alerts, either individually or in groups.  This method is more efficient than polling native Modbus registers which require separate polls for discontiguous register ranges and/or different data types.</p>
+<p>Configuration of <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong>, <strong>reports</strong> and <strong>alerts</strong> is normally done by creating a <em>configuration file</em> called <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> that is included in a build package to load on the satellite terminal prior to deployment in the field.</p>
+<p>An <strong>OTA API</strong> provides satellite <strong>message</strong> constructs for remote configuration, query of parameters, and direct read/write of Modbus registers.
+These <strong>message</strong> structures are sent using Inmarsat’s <a class="reference external" href="https://developer.inmarsat.com/content/isatdatapro-messaging-api">IDP Messaging API</a>.</p>
+<div class="section" id="periodic-reports">
+<h4>2.1.1.1. Periodic Reports<a class="headerlink" href="#periodic-reports" title="Permalink to this headline">¶</a></h4>
+<p>By default, each <strong>report</strong> is sent immediately when configured or after a terminal reset.  Subsequent reports are sent at the defined interval in <em>seconds</em> relative to the previous report.</p>
+</div>
+<div class="section" id="time-of-day-reports">
+<h4>2.1.1.2. Time of Day Reports<a class="headerlink" href="#time-of-day-reports" title="Permalink to this headline">¶</a></h4>
+<p>A report can be <em>optionally</em> configured to send data from a specific time of day.
+Because having many devices send data at the exact same time causes problems on the satellite network, when using Time of Day reports you must configure a <strong>window</strong> to distribute the time of day measurements on the satellite network.
+In this case, the measurement is taken as a <em>snapshot</em> at the specific time of day, and then sent a short while afterward.</p>
+<p>Time of Day reports from a given terminal will be sent at the same offset time within the window, each day.  However 2 terminals configured with same time of day and window, may transmit at different times relative to the other.</p>
+</div>
+<div class="section" id="error-handling">
+<h4>2.1.1.3. Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h4>
+<p>Modbus and serial communications errors are captured and sent as <a class="reference internal" href="otaapi.html#error"><span class="std std-ref">alerts</span></a>, as well as logged for diagnostic retrieval.  The following error scenarios are handled:</p>
+<ul class="simple">
+<li>Successive read timeouts are trapped as <em>loss of communication</em> based on the configured Timeouts (Rx, Tx) after the configured number of retries.
+Communication is assumed to be re-established after the next successful read.</li>
+<li>Modbus protocol errors</li>
+</ul>
+<span id="diagnostics-messages"></span><table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Diagnostics Messages</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Error Code</th>
+<th class="head">Error Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>OK. Communication with Modbus device restored.</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Communication with Modbus device lost.</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Reporting configuration missing or reportingId not found.</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Analytics configuration missing or alertId not found.</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Failed to acknowledge geolocation alert.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="geolocation-and-movement-alerts">
+<h3>2.1.2. Geolocation and Movement Alerts<a class="headerlink" href="#geolocation-and-movement-alerts" title="Permalink to this headline">¶</a></h3>
+<p>Geolocation is an <em>optional</em> feature that uses a reference location and periodically checks the terminal’s location using internal GNSS to determine if the terminal has moved more than a certain distance in a certain time.
+The <strong>reference location</strong> is determined by either:</p>
+<ul class="simple">
+<li>the current location when geolocation alerts are configured</li>
+<li>remote configuration using the <strong>OTA API</strong></li>
+</ul>
+<p>To stop geolocation alerts from repeatedly sending once the terminal has moved, you must send an <strong>acknowledgement of movement</strong> to the terminal using the <strong>OTA API</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">GNSS has inherent error sources, so the geolocation feature takes multiple samples that must exceed the distance for a configured amount of time before a location change alert is sent.</p>
+</div>
+</div>
+<div class="section" id="low-power-operation">
+<h3>2.1.3. Low Power Operation<a class="headerlink" href="#low-power-operation" title="Permalink to this headline">¶</a></h3>
+<p>Power saving is an <em>optional</em> feature that changes the behaviour of the satellite terminal to conserve power, trading off against certain responsiveness to changes.</p>
+<p>The following table summarizes the differences between normal and low power mode:</p>
+<span id="lpm-behaviour"></span><table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Low Power Mode Behaviour</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Terminal Activity</th>
+<th class="head">Default Behaviour</th>
+<th class="head">LPM Behaviour</th>
+<th class="head">LSF API Property Interaction [SIN:PIN]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Incoming Messages</td>
+<td>Immediate</td>
+<td>Check every 60 seconds</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [27:11]=0</div>
+<div class="line">Enter LPM [27:11]=6</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>Geolocation checks</td>
+<td>Every 60 seconds</td>
+<td>Every 360 seconds</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [20:15]=2</div>
+<div class="line">Enter LPM [20:15]=60</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Processing</td>
+<td>Realtime</td>
+<td>Delayed</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [16:4]=0</div>
+<div class="line">Enter LPM [16:4]=1</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>LED indicator</td>
+<td>Flashes every 4 minutes</td>
+<td>No flash</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [16:6]=0; [16:7]=4</div>
+<div class="line">Enter LPM [16:6]=1; [16:7]=0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>RS232</td>
+<td>Always on</td>
+<td>Switch off when no data</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [22:6]=1; [22:15]=2; [22:43]=1; [22:44]=2</div>
+<div class="line">Enter LPM [22:6]=2; [22:15]=0; [22:43]=2; [22:44]=0</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>Satellite Blockage Handling</td>
+<td>Always reacquire (Mobile, Powered)</td>
+<td>Attempt every hour (Mobile, Parked)</td>
+<td><div class="first last line-block">
+<div class="line">Exit LPM [27:10]=1</div>
+<div class="line">Enter LPM [27:10]=5</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="metadata">
+<h3>2.1.4. Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<p>The following <em>metadata</em> is optionally available for each <strong>report</strong> and <strong>alert</strong>, which can use the default settings or override on a per report/alert basis:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">latitude</span></code> is the latitude component of geolocation, expressed in 1/1000th minutes.  <strong>Divide by 60,000</strong> to get <em>decimal degrees</em> up to 5 decimal places precision.</li>
+<li><code class="docutils literal notranslate"><span class="pre">longitude</span></code> is the longitude component of geolocation, expressed in 1/1000th minutes.  <strong>Divide by 60,000</strong> to get <em>decimal degrees</em> up to 5 decimal places precision.</li>
+<li><code class="docutils literal notranslate"><span class="pre">speed</span></code> is the speed component of geolocation, expressed in <em>knots</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">altitude</span></code> is the altitude component of geolocation, expressed in <em>meters</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">distance</span></code> is the distance traveled, in meters, in between 2 geolocation reports.</li>
+<li><code class="docutils literal notranslate"><span class="pre">timestamp</span></code> is the time that the <strong>report</strong> or <strong>alert</strong> was triggered, in seconds since <em>1970-01-01T00:00:00Z</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">paramTimestamp</span></code> is the time that an individual <strong>parameter</strong> was read from the Modbus device, in seconds since <em>1970-01-01T00:00:00Z</em>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="feature-summary">
+<h2>2.2. Feature Summary<a class="headerlink" href="#feature-summary" title="Permalink to this headline">¶</a></h2>
+<p>The Modbus proxy service has been designed based on the following requirements:</p>
+<div class="section" id="general">
+<h3>2.2.1. General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The following hardware variants are supported:<ul>
+<li>ST6100 (satellite-only)</li>
+<li>IDP-680/690 (satellite-only)</li>
+<li>IDP-782 (cellular/satellite)</li>
+<li>IDP-800 (self-powered satellite-only)</li>
+</ul>
+</li>
+<li>The Modbus <em>user service</em> is completely self-contained in terms of documentation and examples for an integrator, without dependencies on non-core <strong>LSF</strong> services.
+A typical user does not need to be intimately familiar with the ORBCOMM product documentation and Lua Service Framework.</li>
+</ol>
+</div>
+<div class="section" id="physical-communication-layer">
+<h3>2.2.2. Physical Communication Layer<a class="headerlink" href="#physical-communication-layer" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Configurable to work on any of the supported terminal’s RS232 or RS485 interface(s).</li>
+<li>Supports serial baud rates on industry-standard settings from 1200 to 115200, as well as it supports configuration of parity, data bits and stop bits.</li>
+<li>If communication with a slave device is lost, the service sends a corresponding alert.</li>
+</ol>
+</div>
+<div class="section" id="data-communication-modbus-protocol-layer">
+<h3>2.2.3. Data Communication (Modbus Protocol) Layer<a class="headerlink" href="#data-communication-modbus-protocol-layer" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Supports operation on one or multiple terminal serial ports (one Modbus network per serial port).</li>
+<li>Configurable for Modbus RTU or ASCII protocol variants (one variant per Modbus network).</li>
+<li>Configurable Modbus slave response timeout, with a default value set to 3 seconds.</li>
+<li>Supports multiple Modbus device (slave) addresses when using RS485 port on a multi-drop Modbus network.</li>
+<li>Configurable for 0-based (default, native) or 1-based (PLC) Modbus addressing per each slave device.</li>
+<li>The following types of Modbus addresses supported:<ul>
+<li>Coils</li>
+<li>Discrete inputs</li>
+<li>Analog inputs</li>
+<li>Holding (aka analog input/output) register</li>
+</ul>
+</li>
+<li>Handles Modbus protocol errors by logging to the log core service. Logs can be retrieved remotely utilizing corresponding log service messages.</li>
+</ol>
+</div>
+<div class="section" id="data-interpretation">
+<h3>2.2.4. Data Interpretation<a class="headerlink" href="#data-interpretation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Maps Modbus register values to parameters using the following configuration options per parameter:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">encoding</span></code> data type (signed/unsigned integer or 8/16/32 bits, Boolean, 32-bit floating point, ASCII)</li>
+<li><code class="docutils literal notranslate"><span class="pre">length</span></code> data size (number of contiguous registers)</li>
+</ul>
+</li>
+<li>Configurable byte order and word order (Endianness) on a per device basis).</li>
+<li>Data sampling (Modbus polling) interval is configurable value on a per-device basis.</li>
+<li>If specified in the configuration for the specific parameter, the service generates alerts if a measurement value exceeds some threshold either high, low, or a change of X amount.</li>
+</ol>
+</div>
+<div class="section" id="data-reporting-and-register-read-write">
+<h3>2.2.5. Data Reporting and Register Read/Write<a class="headerlink" href="#data-reporting-and-register-read-write" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>OTA reports are configurable to contain multiple (up to 100) different register data values of same or different type, as individual parameter data fields within a single message.</li>
+<li>Reports can be sent at a configurable interval.</li>
+<li>Time-of-day based register reads can be captured as a “snapshot” into a timestamped report with data delivery distributed over a small window to load balance the satellite network.</li>
+<li>Supports native/transparent Modbus read/write commands and responses OTA, on-demand, using a messaging API.</li>
+<li>Effectively allows “remapping registers”, since parameter data fields do not need to use contiguous register values.</li>
+<li>Timestamps can optionally be included in reports or alerts on a per-parameter basis. Timestamp (UNIX epoch format) shall be that of the most recent Modbus slave response prior to message transmission.</li>
+<li>Location can optionally be included in reports and alerts.  Location resolution is approximately +/- 1m (1/1000 minutes, recognizing that GPS accuracy is typically 5-10m), +/- 1 km/h, +/- 1-degree heading, and +/- 1m altitude</li>
+</ol>
+</div>
+<div class="section" id="alerts-and-data-analytics">
+<h3>2.2.6. Alerts and Data Analytics<a class="headerlink" href="#alerts-and-data-analytics" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Supports configuration of up to 245 unique alerts, triggered by interpreting specified parameter data values including:<ul>
+<li>High value threshold</li>
+<li>Low value threshold</li>
+<li>Return-to-normal sends an alert when the high or low value last reported exceeded threshold but returned to normal range</li>
+<li>Change value relative to last read value</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="geolocation">
+<h3>2.2.7. Geolocation<a class="headerlink" href="#geolocation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Optional location change alert based on configurable distance change relative to last reported location (persisting in time to prevent random GNSS errors triggering false alerts).</li>
+</ol>
+</div>
+<div class="section" id="id1">
+<h3>2.2.8. Low Power Operation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The service supports optional power saving to support battery-powered installations.</li>
+</ol>
+</div>
+<div class="section" id="service-configuration">
+<h3>2.2.9. Service Configuration<a class="headerlink" href="#service-configuration" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The service contains no default polling, reporting or alert configurations.  It must be explicitly configured.</li>
+<li>The primary method of configuration is pre-configuration using a text file, loaded on the satellite terminal using its main console RS232 port.</li>
+<li>Supports manual local configuration using console commands on the main RS232 interface.  Console commands present a similar structure as the configuration text file.</li>
+<li>Supports over-the-air (OTA) configuration query and changes using a messaging API.</li>
+<li>Supports embedded software local configuration using the Lua Service Framework API.</li>
+<li>All configurations are stored in non-volatile memory, and persist satellite terminal reset.</li>
+<li>Optional configuration of power-saving mode to minimize energy consumption.</li>
+</ol>
+</div>
+<div class="section" id="diagnostics">
+<h3>2.2.10. Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Collects Modbus diagnostics data such as timeouts and errors, made available by polling debug and error logs remotely using the messaging API.</li>
+</ol>
+</div>
+<div class="section" id="lua-service-framework-api">
+<h3>2.2.11. Lua Service Framework API<a class="headerlink" href="#lua-service-framework-api" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The service provides an effective interface for integration with other services and Agents via properties, events, function calls and messages</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="3. How to Use"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="1. Overview"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

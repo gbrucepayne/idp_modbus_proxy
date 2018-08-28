@@ -1,0 +1,197 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6. LSF API Integration &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Testing" href="testing.html" />
+    <link rel="prev" title="5. OTA API Integration" href="otaapi.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="7. Testing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="otaapi.html" title="5. OTA API Integration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. LSF API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#properties">6.1. Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shell-commands">6.2. Shell Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modbus-communications-configuration">6.2.1. Modbus Communications Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reporting-configuration">6.2.2. Reporting Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alerts-configuration">6.2.3. Alerts Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#events">6.3. Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">6.4. Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="otaapi.html"
+                        title="previous chapter">5. OTA API Integration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="next chapter">7. Testing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/lsfapi.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lsf-api-integration">
+<h1>6. LSF API Integration<a class="headerlink" href="#lsf-api-integration" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section assumes the user is familiar with the ORBCOMM shell interface (<strong>T404</strong>) and Terminal API (<strong>T405</strong>).</p>
+</div>
+<div class="section" id="properties">
+<h2>6.1. Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="configuration.html#config-properties"><span class="std std-ref">Configuration</span></a></p>
+</div>
+<div class="section" id="shell-commands">
+<h2>6.2. Shell Commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">¶</a></h2>
+<p>The shell commands for the service are used as an individual configuration utility, as a testing/development alternative to <code class="docutils literal notranslate"><span class="pre">config.dat</span></code>.</p>
+<div class="section" id="modbus-communications-configuration">
+<h3>6.2.1. Modbus Communications Configuration<a class="headerlink" href="#modbus-communications-configuration" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">[&lt;port&gt;|&lt;device&gt;|&lt;parameter&gt;|&lt;property&gt;]</span></code> with:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">[name]</span> <span class="pre">[&lt;baudRate&gt;</span> <span class="pre">&lt;parity&gt;</span> <span class="pre">&lt;mode&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">device</span> <span class="pre">[deviceId]</span> <span class="pre">[&lt;networkId&gt;</span> <span class="pre">&lt;port&gt;</span> <span class="pre">&lt;pollInterval&gt;</span> <span class="pre">&lt;byteOrder&gt;</span> <span class="pre">&lt;wordOrder&gt;</span> <span class="pre">&lt;serialRxTimeout&gt;</span> <span class="pre">&lt;serialTxTimeout&gt;</span> <span class="pre">&lt;plcBaseAddress&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">parameter</span> <span class="pre">[paramId]</span> <span class="pre">[&lt;deviceId&gt;</span> <span class="pre">&lt;registerType&gt;</span> <span class="pre">&lt;address&gt;</span> <span class="pre">&lt;length&gt;</span> <span class="pre">&lt;encoding&gt;</span> <span class="pre">&lt;mult&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">property</span> <span class="pre">[pin]</span> <span class="pre">[paramId]</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">config</span> <span class="pre">get</span> <span class="pre">[&lt;all&gt;|&lt;port&gt;|&lt;device&gt;|&lt;parameter&gt;|&lt;properties&gt;]</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">config</span> <span class="pre">del</span> <span class="pre">[&lt;all&gt;|&lt;port&gt;|&lt;device&gt;|&lt;parameter&gt;|&lt;properties&gt;]</span></code></p>
+</li>
+</ul>
+<p>Example commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">port</span><span class="o">=</span><span class="n">rs485</span> <span class="n">baudRate</span><span class="o">=</span><span class="mi">9600</span> <span class="n">parity</span><span class="o">=</span><span class="n">none</span> <span class="n">mode</span><span class="o">=</span><span class="n">rtu</span>
+<span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span> <span class="n">networkId</span><span class="o">=</span><span class="mi">1</span> <span class="n">port</span><span class="o">=</span><span class="n">rs485</span> <span class="n">pollInterval</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">paramId</span><span class="o">=</span><span class="mi">1</span> <span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span> <span class="n">registerType</span><span class="o">=</span><span class="n">analog</span> <span class="n">address</span><span class="o">=</span><span class="mi">31</span> <span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reporting-configuration">
+<h3>6.2.2. Reporting Configuration<a class="headerlink" href="#reporting-configuration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">reporting</span> <span class="pre">set</span> <span class="pre">[reportingId]</span> <span class="pre">[interval]</span> <span class="pre">&lt;timeOfDay&gt;</span> <span class="pre">&lt;timeOfDayWindow&gt;</span> <span class="pre">[paramIds]</span> <span class="pre">&lt;msgBitmap&gt;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">reporting</span> <span class="pre">get</span> <span class="pre">[&lt;all&gt;|&lt;reportingId&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">reporting</span> <span class="pre">del</span> <span class="pre">[&lt;all&gt;|&lt;reportingId&gt;]</span></code></li>
+</ul>
+<p>Example command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">reporting</span> <span class="nb">set</span> <span class="n">reportingId</span><span class="o">=</span><span class="mi">1</span> <span class="n">interval</span><span class="o">=</span><span class="mi">3600</span> <span class="n">paramIds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alerts-configuration">
+<h3>6.2.3. Alerts Configuration<a class="headerlink" href="#alerts-configuration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">analytics</span> <span class="pre">set</span> <span class="pre">[analyticsId]</span> <span class="pre">[paramId]</span> <span class="pre">[&lt;min&gt;</span> <span class="pre">&lt;max&gt;</span> <span class="pre">&lt;change&gt;]</span> <span class="pre">&lt;paramIds&gt;</span> <span class="pre">&lt;msgBitmap&gt;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">analytics</span> <span class="pre">get</span> <span class="pre">[&lt;all&gt;|&lt;analyticsId&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">modbus</span> <span class="pre">analytics</span> <span class="pre">del</span> <span class="pre">[&lt;all&gt;|&lt;analyticsId&gt;]</span></code></li>
+</ul>
+<p>Example command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">analytics</span> <span class="nb">set</span> <span class="n">analyticsId</span><span class="o">=</span><span class="mi">1</span> <span class="n">paramId</span><span class="o">=</span><span class="mi">1</span> <span class="n">maxON</span><span class="o">=</span><span class="mi">350</span> <span class="n">maxOFF</span><span class="o">=</span><span class="mi">300</span> <span class="n">paramIds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="events">
+<h2>6.3. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+<div class="section" id="functions">
+<h2>6.4. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>None.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="7. Testing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="otaapi.html" title="5. OTA API Integration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

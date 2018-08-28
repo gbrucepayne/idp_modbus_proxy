@@ -1,0 +1,15 @@
+MIN,Name,Description
+10,:ref:`setModbusConfig <setModbusConfig>`,"Configure **ports**, **devices**, **parameters** and **properties**"
+11,:ref:`getModbusConfig <getModbusConfig>`,"Get configuration of **ports**, **devices**, **parameters** and **properties**"
+12,:ref:`delModbusConfig <delModbusConfig>`,Delete configuration(s)
+13,:ref:`setReportConfig <setReportConfig>`,Configure periodic **reports**
+14,:ref:`getReportConfig <getReportConfig>`,Get configuration of periodic **reports**
+15,:ref:`delReportConfig <delReportConfig>`,Delete periodic **reports**
+16,:ref:`setAlertConfig <setAlertConfig>`,Configure **alerts**
+17,:ref:`getAlertConfig <getAlertConfig>`,Get configuration of **alerts**
+18,:ref:`delAlertConfig <delAlertConfig>`,Delete configuration of **alerts**
+19,:ref:`readParam <readParam>`,Read **parameters** data values immediately.
+20,:ref:`writeParam <writeParam>`,Write **parameters** data values immediately.
+21,:ref:`readData <readData>`,Read a Modbus register directly.
+22,:ref:`writeData <writeData>`,Write a Modbus register directly.
+23,:ref:`setRefPosition <setRefPosition>`,"Sets the current location as the *geolocation* reference, and acknowledges a **positionChangeAlert**"

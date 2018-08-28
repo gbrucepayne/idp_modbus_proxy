@@ -1,0 +1,10 @@
+Optional Field,Default Setting,Example 1 (lat/lng/alt/time),Example 2 (time only)
+latitude,   -,   -,
+longitude,   -,   -,
+speed,   -,,
+altitude,   -,   -,
+distance,   -,,
+timestamp,   -,   -,   -
+paramTimestamp,   -,,
+(*reserved*),   -,,
+``msgBitmap``,``FF``,``D4``,``04``

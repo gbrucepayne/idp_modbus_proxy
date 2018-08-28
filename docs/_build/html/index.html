@@ -1,0 +1,291 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Modbus Proxy for IDP Terminals &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Overview" href="overview.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="overview.html" title="1. Overview"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="overview.html"
+                        title="next chapter">1. Overview</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <table border="1" class="docutils align-center">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="_images/inmarsat.jpg"><img alt="Inmarsat" class="align-middle" src="_images/inmarsat.jpg" style="width: 200px; height: 78px;" /></a></td>
+<td><a class="reference internal" href="_images/gse.jpg"><img alt="Global Satellite Engineering" class="align-middle" src="_images/gse.jpg" style="width: 250px; height: 94px;" /></a></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="modbus-proxy-for-idp-terminals">
+<h1>Modbus Proxy for IDP Terminals<a class="headerlink" href="#modbus-proxy-for-idp-terminals" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body"><p class="first">2018-08-20</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Revision:</th><td class="field-body"><p class="first">1</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body"><ul class="first simple">
+<li>Geoff Bruce-Payne</li>
+<li>Yanosh Sabo</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Contributors:</th><td class="field-body"><ul class="first last simple">
+<li>Robert Gauthier</li>
+<li>Andrew Windridge</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.modbus.org">Modbus</a> is a widely used industrial automation data protocol based on a Master/Slave architecture, often used in Supervisory Control and Data Acquisition (SCADA) systems.
+Many industrial automation devices use Modbus protocol over a serial interface (RS-232 or RS-485).</p>
+<p>IsatData Pro® is a <em>highly-reliable, global</em> satellite data service offered by <a class="reference external" href="https://www.inmarsat.com/service/isatdata-pro/">Inmarsat</a>, well suited to transporting small amounts of machine-to-machine (M2M) and <em>Industrial Internet of Things</em> (IIoT) data to and from industrial devices (e.g. Modbus) located in remote locations.</p>
+<p>The Modbus Proxy service is an <em>embedded</em> software application written in the <a class="reference external" href="https://www.lua.org">Lua</a> programming language that runs on certain versions of IsatData Pro compatible satellite terminals manufactured by <a class="reference external" href="https://www.orbcomm.com/en/hardware/devices/st-series">ORBCOMM</a>.</p>
+<div class="admonition-disclaimer admonition">
+<p class="first admonition-title">Disclaimer</p>
+<p class="last">While the information in this document has been prepared in good faith, no representation, warranty, assurance or undertaking (express or implied) is or will be made, and no responsibility or liability (howsoever arising) is or will be accepted by the Inmarsat group or any of its officers, employees or agents in relation to the adequacy, accuracy, completeness, reasonableness or fitness for purpose of the information in this document. All and any such responsibility and liability is expressly disclaimed and excluded to the maximum extent permitted by applicable law. INMARSAT is a trademark owned by the International Mobile Satellite Organisation, the Inmarsat LOGO is a trademark owned by Inmarsat (IP) Company Limited. Both trademarks are licensed to Inmarsat Global Limited. All other Inmarsat trade marks in this document are owned by Inmarsat Global Limited.</p>
+</div>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#concept-of-operation">1.1. Concept of Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#software-architecture">1.2. Software Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="funcspec.html#operation">2.1. Operation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#modbus-device-communication">2.1.1. Modbus Device Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="funcspec.html#periodic-reports">2.1.1.1. Periodic Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funcspec.html#time-of-day-reports">2.1.1.2. Time of Day Reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funcspec.html#error-handling">2.1.1.3. Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#geolocation-and-movement-alerts">2.1.2. Geolocation and Movement Alerts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#low-power-operation">2.1.3. Low Power Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#metadata">2.1.4. Metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="funcspec.html#feature-summary">2.2. Feature Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#general">2.2.1. General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#physical-communication-layer">2.2.2. Physical Communication Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#data-communication-modbus-protocol-layer">2.2.3. Data Communication (Modbus Protocol) Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#data-interpretation">2.2.4. Data Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#data-reporting-and-register-read-write">2.2.5. Data Reporting and Register Read/Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#alerts-and-data-analytics">2.2.6. Alerts and Data Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#geolocation">2.2.7. Geolocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#id1">2.2.8. Low Power Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#service-configuration">2.2.9. Service Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#diagnostics">2.2.10. Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funcspec.html#lua-service-framework-api">2.2.11. Lua Service Framework API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#example-use">3.1. Example Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#create-your-configuration-file">3.1.1. Create Your Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#create-your-build-package">3.1.2. Create Your Build Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#install-your-package">3.1.3. Install Your Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#create-message-definition-file">3.1.4. Create Message Definition File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#uplode-message-definition-file-to-inmarsat-message-gateway">3.1.5. Uplode Message Definition File to Inmarsat Message Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#retrieve-data-using-the-isatdata-pro-messaging-api">3.1.6. Retrieve Data Using the IsatData Pro Messaging API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">4. Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#the-configuration-file">4.1. The Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#shell-commands">4.2. Shell Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#communications-configuration">4.3. Communications Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#ports">4.3.1. Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#devices">4.3.2. Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#parameters">4.3.3. Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#properties">4.3.4. Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#reporting-configuration">4.4. Reporting Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#reports">4.4.1. Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#analytics-configuration">4.5. Analytics Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#alerts">4.5.1. Alerts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-settings-configuration-properties">4.6. Default Settings (Configuration Properties)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#geolocation-movement-alert-configuration">4.6.1. Geolocation Movement Alert Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#lsf-properties">4.6.2. LSF Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#optional-metadata-fields-in-messages">4.6.3. Optional Metadata Fields in Messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="otaapi.html#message-structure">5.1. Message Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="otaapi.html#example">5.1.1. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="otaapi.html#message-definitions">5.2. Message Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="otaapi.html#to-mobile-messages">5.2.1. To-Mobile Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#setmodbusconfig-min-10">5.2.1.1. setModbusConfig (MIN 10)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#getmodbusconfig-min-11">5.2.1.2. getModbusConfig (MIN 11)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#delmodbusconfig-min-12">5.2.1.3. delModbusConfig (MIN 12)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#setreportconfig-min-13">5.2.1.4. setReportConfig (MIN 13)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#getreportconfig-min-14">5.2.1.5. getReportConfig (MIN 14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#delreportconfig-min-15">5.2.1.6. delReportConfig (MIN 15)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#setalertconfig-min-16">5.2.1.7. setAlertConfig (MIN 16)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#getalertconfig-min-17">5.2.1.8. getAlertConfig (MIN 17)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#delalertconfig-min-18">5.2.1.9. delAlertConfig (MIN 18)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#readparam-min-19">5.2.1.10. readParam (MIN 19)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#writeparam-min-20">5.2.1.11. writeParam (MIN 20)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#readdata-min-21">5.2.1.12. readData (MIN 21)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#writedata-min-22">5.2.1.13. writeData (MIN 22)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#setrefposition-min-23">5.2.1.14. setRefPosition (MIN 23)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="otaapi.html#from-mobile-messages">5.2.2. From-Mobile Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#modbusconfig-min-10">5.2.2.1. modbusConfig (MIN 10)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#reportconfig-min-11">5.2.2.2. reportConfig (MIN 11)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#alertconfig-min-12">5.2.2.3. alertConfig (MIN 12)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#readparamresults-min-13">5.2.2.4. readParamResults (MIN 13)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#writeparamresults-min-14">5.2.2.5. writeParamResults (MIN 14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#readdataresults-min-15">5.2.2.6. readDataResults (MIN 15)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#writedataresults-min-16">5.2.2.7. writeDataResults (MIN 16)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#periodicreport-min-100">5.2.2.8. periodicReport (MIN 100)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#paramalerton-min-101">5.2.2.9. paramAlertON (MIN 101)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#paramalertoff-min-102">5.2.2.10. paramAlertOFF (MIN 102)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#paramalertchange-min-103">5.2.2.11. paramAlertChange (MIN 103)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#positionchangealert-min-104">5.2.2.12. positionChangeAlert (MIN 104)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="otaapi.html#error-min-200">5.2.2.13. error (MIN 200)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lsfapi.html#properties">6.1. Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lsfapi.html#shell-commands">6.2. Shell Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lsfapi.html#modbus-communications-configuration">6.2.1. Modbus Communications Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lsfapi.html#reporting-configuration">6.2.2. Reporting Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lsfapi.html#alerts-configuration">6.2.3. Alerts Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lsfapi.html#events">6.3. Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lsfapi.html#functions">6.4. Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#modbus-slave">7.1. Modbus Slave</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="overview.html" title="1. Overview"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

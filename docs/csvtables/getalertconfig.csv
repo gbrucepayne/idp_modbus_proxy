@@ -1,0 +1,2 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+alertId,unsignedint,Y,Y,31,"If included, specifies the **alert** configuration being queried. If *not* included, all alerts configurations will be returned."

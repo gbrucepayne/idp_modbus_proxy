@@ -1,0 +1,13 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+latitude,signedint,N,Y,24,"Latitude in milliminutes, if present in *metadata* options.
+
+Divide by 60000 to get decimal degrees (round to 6 decimal places precision)."
+longitude,signedint,N,Y,25,"Longitude in milliminutes, if present in *metadata* options.
+
+Divide by 60000 to get decimal degrees (round to 6 decimal places precision)."
+altitude,signedint,N,Y,20,"Altitude in meters above sea level, if present in *metadata* options."
+speed,unsignedint,N,Y,8,Speed of travel in km/h.
+distance,unsignedint,N,Y,31,"Distance moved in tenths of meters, from previous location."
+timestamp,unsignedint,Y,Y,31,"Alert timestamp, seconds since *1970-01-01T00:00:00Z*.
+
+Only present if configured in *metadata* options."

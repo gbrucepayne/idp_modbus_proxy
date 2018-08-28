@@ -1,0 +1,37 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+ports,array,Y,Y,3,Included only if the set/get operation specified **ports**.
+   * port,enum,N,N/A,2,"| Name of the port
+| ``rs232``
+| ``rs485``
+| ``rs232aux``"
+   * baudRate,enum,N,N/A,3,"| Speed of serial communications.
+| ``1200``, ``2400``, ``4800``, ``9600``, ``19200``, ``38400``, ``57600``, ``115200``"
+   * parity,enum,N,N/A,2,"| ``none``
+| ``even``
+| ``odd``"
+   * mode,enum,N,N/A,1,``rtu`` or ``ascii``
+devices,array,Y,N,100,Included only if the set/get operation specified **devices**.
+   * deviceId,unsignedint,N,N/A,8,Unique identifier of the device in the Modbus service.
+  * networkId,unsignedint,N,N/A,8,Modbus Slave address on the physical network.
+   * port,enum,N,N/A,2,Serial port on which the device is attached.
+   * pollInterval,unsignedint,N,N/A,17,The interval (seconds) at which the device registers are polled.
+   * byteOrder,enum,N,N/A,1,``msb`` or ``lsb``
+   * wordOrder,enum,N,N/A,1,``msw`` or ``lsw``
+   * serialRxTimeout,unsignedint,N,N/A,15,Read timeout (milliseconds) waiting on next byte to be received.
+   * serialTxTimeout,unsignedint,N,N/A,15,Read timeout (milliseconds) waiting on last transmitted byte to be confirmed.
+   * plcBaseAddress,enum,N,N/A,1,1 = Use PLC addressing (non zero-based)
+   * retries,unsignedint,N,N/A,4,The number of serial retries to attempt before raising a communication error.
+parameters,array,Y,N,300,Included only if the set/get operation specified **parameters**.
+   * paramId,unsignedint,N,N/A,10,Unique identifier of the parameter used for reporting and analytics.
+   * deviceId,unsignedint,N,N/A,8,Unique identifier of the device in the Modbus service.
+   * registerType,enum,N,N/A,2,"| ``coil`` - discrete output coil
+| ``input`` - discrete digital input
+| ``analog`` - (analog) input register
+| ``holding`` - holding register"
+   * encoding,enum,N,N/A,4,"``boolean``, ``int8``, ``uint8``, ``int16``, ``uint16``, ``int32``, ``float32``, ``string``, ``base64string``, ``raw``"
+   * address,unsignedint,N,N/A,31,Starting Modbus register address of the data
+   * length,unsignedint,N,N/A,12,Number of registers used to contain the data (including the starting address)
+   * mult,unsignedint,N,N/A,7,A multiplier applied to the data value prior to reporting or analytics.
+properties,array,Y,N/A,245,Included only if the set/get operation specified **properties**.
+   * paramId,unsignedint,N,N/A,10,Unique identifier of the parameter used for reporting and analytics.
+   * pin,unsignedint,N,N/A,8,The property identification number (within Modbus service) to hold the parameter value.

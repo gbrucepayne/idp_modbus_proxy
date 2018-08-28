@@ -1,0 +1,6 @@
+Error Code,Error Description
+0,OK. Communication with Modbus device restored.
+1,Communication with Modbus device lost.
+2,Reporting configuration missing or reportingId not found.
+3,Analytics configuration missing or alertId not found.
+4,Failed to acknowledge geolocation alert.

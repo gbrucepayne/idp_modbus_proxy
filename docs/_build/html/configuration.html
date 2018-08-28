@@ -1,0 +1,896 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4. Configuration &#8212; IDP Modbus Proxy 1 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. OTA API Integration" href="otaapi.html" />
+    <link rel="prev" title="3. How to Use" href="usage.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="otaapi.html" title="5. OTA API Integration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="3. How to Use"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-configuration-file">4.1. The Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shell-commands">4.2. Shell Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#communications-configuration">4.3. Communications Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ports">4.3.1. Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devices">4.3.2. Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">4.3.3. Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">4.3.4. Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-configuration">4.4. Reporting Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reports">4.4.1. Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analytics-configuration">4.5. Analytics Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#alerts">4.5.1. Alerts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#default-settings-configuration-properties">4.6. Default Settings (Configuration Properties)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geolocation-movement-alert-configuration">4.6.1. Geolocation Movement Alert Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lsf-properties">4.6.2. LSF Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-metadata-fields-in-messages">4.6.3. Optional Metadata Fields in Messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="otaapi.html">5. OTA API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsfapi.html">6. LSF API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">7. Testing</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">3. How to Use</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="otaapi.html"
+                        title="next chapter">5. OTA API Integration</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/configuration.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration">
+<h1>4. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>The Modbus service implements 3 primary functional modules: communication, reporting and analytics.  Configuration of all three modules is done using any of:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file loaded locally on the console</li>
+<li>console shell commands</li>
+<li><strong>OTA API</strong></li>
+<li><strong>LSF API</strong></li>
+</ul>
+<p>Additionally, optional functional modules support geolocation movement alerts, power-saving operation, and diagnostics logs.</p>
+<div class="section" id="the-configuration-file">
+<span id="configfile"></span><h2>4.1. The Configuration File<a class="headerlink" href="#the-configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The most practical way of configuring for deployment is to create a <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file and build it into a <strong>.idppkg</strong> package file.</p>
+<p><strong>Comments</strong> can be added to the <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file by enclosing in <code class="docutils literal notranslate"><span class="pre">/*</span></code> and <code class="docutils literal notranslate"><span class="pre">*/</span></code>.</p>
+<p>A simple example <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file could look like <a class="reference internal" href="usage.html#example-config-dat"><span class="std std-ref">this</span></a>.</p>
+</div>
+<div class="section" id="shell-commands">
+<h2>4.2. Shell Commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">¶</a></h2>
+<p>For initial testing of the service, you can use <em>shell</em> commands on the main serial port of the terminal to configure individual <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong>, <strong>reports</strong> and <strong>alerts</strong>.</p>
+<p>The <em>shell</em> commands can be queried iteratively using the <code class="docutils literal notranslate"><span class="pre">?</span></code> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modbus ?
+</pre></div>
+</div>
+<p>An example <em>shell</em> command to configure a <strong>parameter</strong> would look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">parameter</span> <span class="n">paramId</span><span class="o">=</span><span class="mi">1</span> <span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span> <span class="n">registerType</span><span class="o">=</span><span class="n">analog</span> <span class="n">address</span><span class="o">=</span><span class="mi">31</span> <span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="communications-configuration">
+<h2>4.3. Communications Configuration<a class="headerlink" href="#communications-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The Modbus service is typically configured to interface with a single industrial device, but can support connection to a Modbus network on each available serial port of the satellite terminal.  Modbus is a master-slave protocol, and the satellite terminal acts as the master and polls device slave(s) attached to the RS232 and/or RS485 serial port.</p>
+<p>The communication hierarchy to be configured is:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">port</span></code> defines the physical serial port used to connect to the Modbus device or network.</li>
+<li><code class="docutils literal notranslate"><span class="pre">device</span></code> is a Modbus slave on a given Port, assigned a unique ID within the service context.  Multiple Devices can be associated with a single Port.</li>
+<li><code class="docutils literal notranslate"><span class="pre">parameter</span></code> associates to an individual data value obtained from Modbus register(s) on a given Device.</li>
+<li><code class="docutils literal notranslate"><span class="pre">property</span></code> <em>optionally</em> associates to a <strong>parameter</strong> to expose that Modbus data value individually to the <strong>OTA API</strong> and/or <strong>LSF API</strong>.</li>
+</ul>
+<div class="section" id="ports">
+<span id="id1"></span><h3>4.3.1. Ports<a class="headerlink" href="#ports" title="Permalink to this headline">¶</a></h3>
+<p>The satellite terminal supports one or more serial ports depending on the hardware model (see Terminal Reference Table). Each <code class="docutils literal notranslate"><span class="pre">port</span></code> can be configured to talk to a Modbus slave device or, in the case of RS485 multi-drop, a network of devices.</p>
+<p>Each <strong>port</strong> has the following parameters:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">port</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">rs232</span></code> or <code class="docutils literal notranslate"><span class="pre">rs232aux</span></code> or <code class="docutils literal notranslate"><span class="pre">rs485</span></code> depending on the physical port available on the terminal:</p>
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-text">Ports available on satellite terminal models</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="36%" />
+<col width="20%" />
+<col width="25%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Terminal Model</strong></td>
+<td><strong>rs232</strong></td>
+<td><strong>rs232aux</strong></td>
+<td><strong>rs485</strong></td>
+</tr>
+<tr class="row-even"><td><strong>ST6100</strong></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>IDP-680/690</strong></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>IDP-782</strong></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>IDP-800</strong></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">baudRate</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A number value in the range <code class="docutils literal notranslate"><span class="pre">1200</span></code>, <code class="docutils literal notranslate"><span class="pre">2400</span></code>, <code class="docutils literal notranslate"><span class="pre">4800</span></code>, <code class="docutils literal notranslate"><span class="pre">9600</span></code>, <code class="docutils literal notranslate"><span class="pre">19200</span></code>, <code class="docutils literal notranslate"><span class="pre">38400</span></code>, <code class="docutils literal notranslate"><span class="pre">57600</span></code>, <code class="docutils literal notranslate"><span class="pre">115200</span></code></p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">parity</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">even</span></code>, <code class="docutils literal notranslate"><span class="pre">odd</span></code> or <code class="docutils literal notranslate"><span class="pre">none</span></code></p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">mode</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The variant of Modbus protocol used: <code class="docutils literal notranslate"><span class="pre">rtu</span></code> or <code class="docutils literal notranslate"><span class="pre">ascii</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The selection of <code class="docutils literal notranslate"><span class="pre">ascii</span></code> or <code class="docutils literal notranslate"><span class="pre">rtu</span></code> mode does not affect data transmission costs.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="devices">
+<span id="id2"></span><h3>4.3.2. Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h3>
+<p>Each Modbus device attached to a serial port is assigned a unique ID within the service.  If interfacing to multiple Modbus devices on a multi-drop RS485 network, each <code class="docutils literal notranslate"><span class="pre">device</span></code> will have a “network” ID unique on that multi-drop network.</p>
+<p>Each <strong>device</strong> has the following configuration parameters:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">deviceId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A number from <strong>1..255</strong>, globally unique identifier for the device within the service, used to identify a physical device on the attached Modbus network.
+Note this may be different from the Modbus <em>Device ID</em> (<em>slave address</em>) configured on the physical device.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">networkId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A number from <strong>1..247</strong> mapping to the Modbus slave address of the physical device on the Modbus network.
+Typically, this will be specified by the device manufacturer and often uses a default value of 1.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">port</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>Serial communication <strong>port</strong> on which the Modbus Slave device is connected <code class="docutils literal notranslate"><span class="pre">rs232</span></code>, <code class="docutils literal notranslate"><span class="pre">rs232aux</span></code> or <code class="docutils literal notranslate"><span class="pre">rs485</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">pollInterval</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>Interval in seconds from <strong>0..604800</strong> to poll the configured set of register data from a particular device.</p>
+<ul class="simple">
+<li>0 = disabled</li>
+<li>604800 = weekly</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This value by itself does not affect satellite data use, and typically this is configured at a fast interval in order to capture value changes in real-time to supplement periodic <strong>reports</strong> with <strong>alerts</strong>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">byteOrder</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">msb</span></code> (<em>most significant bit</em>) or <code class="docutils literal notranslate"><span class="pre">lsb</span></code> (<em>least significant bit</em>) is a sequential order in which bytes are sent over serial link, and is generally defined by the Modbus device manufacturer (based on the microprocessor they use).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most Significant Bit (msb) format is also called big-endian or network byte order, and is the typical/default method used.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">wordOrder</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">msw</span></code> (<em>most significant word</em>) or <code class="docutils literal notranslate"><span class="pre">lsw</span></code> (<em>least signficant word</em>) similar to the <em>byteOrder</em> principle, Modbus registers are stored as 16-bit <em>words</em> and the wordOrder is a sequential order in which words, formed by bytes, are to be interpreted to read or write the data value.
+When polling a block of contiguous registers, the word order is important to be able to interpret the data, for example to convert to a standard integer number for transmission or analytics.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">serialRxTimeout</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>Time in milliseconds from <strong>100..30000</strong> to wait for read data from the Modbus device.
+If the Modbus device fails to send a byte serialRxTimeout milliseconds after the last byte, a read timeout error will be raised.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">serialTxTimeout</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>Time in milliseconds from <strong>100..30000</strong> to wait for the acknowledgement of transmission to the Modbus device.
+If the Modbus device fails to send an acknowledgement within serialTx Timeout milliseconds after the last byte has been sent, a write timeout error will be raised.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">plcBaseAddress</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A flag value set to <strong>1</strong> if the Modbus device does not use zero-based addressing.
+Some Modbus devices (typically Programmable Logic Controllers <strong>PLC</strong>) define register addressing with an offset of 1 (e.g. register 1 on the PLC is actually data address 0).</p>
+<p>Setting plcBaseAddress equal to 1 allows the configuration of Parameters that correspond directly to the device manufacturer’s documentation.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">retries</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>The number of retries <strong>1..10</strong> that determines how many data transmission attempts will be made before raising an error. The default value is 1.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="parameters">
+<span id="id3"></span><h3>4.3.3. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<p>Each <strong>parameter</strong> is a uniquely identified data value that maps to a Modbus register value or contiguous register range of a common type used to define a single value.
+Certain data types support analytics that can provide filtering and escalation of critical changes to supplement conventional polled data collected by the centralized application.</p>
+<p>A <strong>parameter</strong> can also be mapped to a <strong>property</strong> <a class="reference internal" href="#properties"><span class="std std-ref">Properties</span></a>, which are exported for direct access by either the <strong>OTA API</strong> or <strong>LSF API</strong>.</p>
+<p>Parameters have the following configurable attributes:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">paramId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A number from <strong>1..255</strong> used to uniquely identify this particular device and parameter within the service for the data value of interest.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">deviceId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A number from <strong>1..255</strong> mapping to the <a class="reference internal" href="#devices"><span class="std std-ref">Device</span></a> the parameter is associated with.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">registerType</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A register type <code class="docutils literal notranslate"><span class="pre">coil</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">analog</span></code> or <code class="docutils literal notranslate"><span class="pre">holding</span></code>.</p>
+<p>Typically Modbus registers are defined based on the following ranges:</p>
+<table border="1" class="colwidths-given docutils" id="id6">
+<caption><span class="caption-text">Modbus Register Ranges and Types</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="24%" />
+<col width="24%" />
+<col width="40%" />
+<col width="12%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Register Number</strong></td>
+<td><strong>Data Address</strong></td>
+<td><strong>Modbus Definition</strong></td>
+<td><strong>registerType</strong></td>
+</tr>
+<tr class="row-even"><td>1 .. 9999</td>
+<td>0x0000 .. 0x270E</td>
+<td>Discrete Output Coils</td>
+<td><code class="docutils literal notranslate"><span class="pre">coil</span></code></td>
+</tr>
+<tr class="row-odd"><td>10001 .. 19999</td>
+<td>0x0000 .. 0x270E</td>
+<td>Discrete Input Contacts</td>
+<td><code class="docutils literal notranslate"><span class="pre">input</span></code></td>
+</tr>
+<tr class="row-even"><td>30001 .. 39999</td>
+<td>0x0000 .. 0x270E</td>
+<td>(Analog) Input Registers</td>
+<td><code class="docutils literal notranslate"><span class="pre">analog</span></code></td>
+</tr>
+<tr class="row-odd"><td>40001 .. 49999</td>
+<td>0x0000 .. 0x270E</td>
+<td>Holding Registers</td>
+<td><code class="docutils literal notranslate"><span class="pre">holding</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">encoding</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>Defines how to interpret data from Modbus registers for analytics or reporting.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">boolean</span></code> converts 0 value to false and any non-zero value to true</li>
+<li><code class="docutils literal notranslate"><span class="pre">int8</span></code> converts register data to 8-bit signed integer value from -128..127</li>
+<li><code class="docutils literal notranslate"><span class="pre">uint8</span></code> converts register data to 8-bit unsigned integer value from 0..255</li>
+<li><code class="docutils literal notranslate"><span class="pre">int16</span></code> converts register data to 16-bit signed integer value from -32768..32767</li>
+<li><code class="docutils literal notranslate"><span class="pre">uint16</span></code> converts register data to 8-bit unsigned integer value from 0..65535</li>
+<li><code class="docutils literal notranslate"><span class="pre">int32</span></code> converts register data to 32-bit signed integer value from -2147483648..2147483647</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">32-bit unsigned integer is not supported by some versions of the <strong>LSF</strong> and therefore is not supported by the Modbus service.</p>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">float32</span></code> converts register data to a single precision floating number.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Floating point numbers are sent as <strong>string</strong> data types in the <strong>OTA API</strong></p>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">string</span></code> converts register data into an ASCII format</li>
+<li><code class="docutils literal notranslate"><span class="pre">base64string</span></code> converts register data into a base64 string format</li>
+<li><code class="docutils literal notranslate"><span class="pre">raw</span></code> converts register data into a single byte array format</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">address</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The <em>data address</em> or from <strong>0..65535</strong> for the starting register to read.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If values are not reading properly from your Modbus device, you may need to set <code class="docutils literal notranslate"><span class="pre">plcBaseAddress</span></code> to 1.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">length</span></code> (<em>conditional</em>)</p>
+<blockquote>
+<div><p>The number of registers to read from <strong>1..125</strong> holding a single data value.
+Since Modbus registers are 16-bits, length is implicitly=1 for encodingType up to 16 bits, and implicitly=2 for 32-bit encodingType.</p>
+<p>Length is <em>required</em> to be specified when encoding is configured as <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">base64string</span></code> or <code class="docutils literal notranslate"><span class="pre">raw</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">mult</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A multiplier from <strong>1..100</strong> applied when reading the encoded register value, typically for purposes of analytics, reporting or API access.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Conversion of floating point to a whole number is useful for analytics since floating point math is problematic in the <strong>LSF</strong>.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="properties">
+<span id="id4"></span><h3>4.3.4. Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<p>Properties are <em>optional</em> and intended to be used within the <strong>LSF API</strong> to directly read or write configuration settings and data parameters from the local console, over-the-air messaging interface or other LSF services, accessed by service-specific Property Identification Numbers (PIN).  The Modbus service allows you to assign an individual device data parameter to a PIN that is exported for access by the LSF.</p>
+<p>Properties have the following configurable attributes:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">paramId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The unique <a class="reference internal" href="#parameters"><span class="std std-ref">Parameters</span></a> id from <strong>1..255</strong> corresponding to the specific device and register value of interest.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">pin</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The unique Property Identifier Number from <strong>10..255</strong> where the parameter value can be read as a <strong>property</strong>.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="reporting-configuration">
+<h2>4.4. Reporting Configuration<a class="headerlink" href="#reporting-configuration" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>report</strong> is used to send one or more <strong>parameter</strong> values on a periodic basis.
+The report interval can be stochastic based on an offset from when the terminal is powered up or reset, or based on time of day.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Time of day reports <em>must</em> be distributed over a population of terminals to minimize satellite packet loss and retransmissions that could affect network quality of service.
+To accommodate fixed time reports, the defined Modbus registers are read at the configured time of day as a <em>snapshot</em>, but the report is distributed over a configurable window of time.
+A given terminal will always report at the same time offset within the window, but any 2 terminals will have different offsets within the window.</p>
+</div>
+<div class="section" id="reports">
+<h3>4.4.1. Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h3>
+<p>Reports are configured either locally via a <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file, manual console typed commands, <strong>OTA API</strong> or <strong>LSF API</strong>.</p>
+<p>Reports have the following configurable attributes:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">reportingId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A unique identifier from <strong>1..255</strong> corresponding to a defined set of <strong>parameters</strong>.</p>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">paramIds</span></code> (<em>required</em>)</dt>
+<dd><p class="first last">A string of comma separated values of unique <strong>parameter id(s)</strong> that will be included in the report.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">interval</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The frequency of transmission in seconds from <strong>0..604800</strong>.  The timer starts as soon as the configuration is processed, or each terminal reboot.</p>
+<div class="line-block">
+<div class="line">0 = disabled (do not send)</div>
+<div class="line">604800 = weekly</div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">timeOfDay</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>The time of day in seconds from midnight UTC <strong>0..86400</strong> when a <em>snapshot</em> reading of the associated <strong>parameters</strong> will be done.</p>
+<div class="line-block">
+<div class="line">0 = disabled (do not send)</div>
+<div class="line">86400 – midnight (starting next day)</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The time of day report will be sent <em>after</em> the measurement, witin a window specified by <code class="docutils literal notranslate"><span class="pre">timeOfDayWindow</span></code>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">timeOfDayWindow</span></code> (<em>conditional</em>)</p>
+<blockquote>
+<div><p>A time period in seconds from <strong>0..3600</strong> that must be configured if using <code class="docutils literal notranslate"><span class="pre">timeOfDay</span></code> is non-zero.
+This is used to delay reports that are scheduled to <em>snapshot</em> at a specific time of day, to avoid satellite network congestion.</p>
+<p>The <em>window</em> is established immediately after the scheduled timeOfDay during which a given terminal can report its snapshot parameters.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A given terminal will transmit at the same offset each period.  But two different terminals with same <code class="docutils literal notranslate"><span class="pre">timeOfDay</span></code> may transmit at different times.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">msgBitmap</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>An ASCII hex string value from <strong>“00”..”FF”</strong> used to override the default Bitmap and include/exclude optional message fields in this particular <strong>report</strong>.</p>
+<p>See: <a class="reference internal" href="#msgbitmap"><span class="std std-ref">msgBitmap</span></a></p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="analytics-configuration">
+<h2>4.5. Analytics Configuration<a class="headerlink" href="#analytics-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Analytics configurations allow creating <strong>alerts</strong>, configured individually for a critical parameter based on the following trigger types:</p>
+<ul class="simple">
+<li>High threshold value exceeded</li>
+<li>Low threshold value exceeded</li>
+<li>Return-to-midrange from High or Low threshold</li>
+<li>An relative change of value</li>
+</ul>
+<div class="section" id="alerts">
+<h3>4.5.1. Alerts<a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h3>
+<p><strong>Alerts</strong> are configured via a <code class="docutils literal notranslate"><span class="pre">config.dat</span></code> file, manually via console commands, <strong>OTA API</strong> or <strong>LSF API</strong>, based on a simple criteria against a specific <strong>parameter</strong> defined by a <code class="docutils literal notranslate"><span class="pre">paramId</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only one <strong>alert</strong> can be defined against a given <strong>paramId</strong>, to avoid ambiguity of conditions.</p>
+</div>
+<p>In order to capture analog measurement values that may fluctuate within a small range, the minimum and maximum threshold values can be configured with bounds using on/off qualifiers.
+For example, consider a wind measurement in which we want an <strong>alert</strong> when the wind goes above a safe range of 45 km/h, but persist the alert condition until the wind drops below 38 km/h.
+Assuming the Modbus register for wind speed is presented in tenths of km/h, we set maxON=450 and maxOFF=380.</p>
+<p>Analytics have the following configurable attributes:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">alertId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>A unique identifier from <strong>1..255</strong> for a particular analytics configuration indicated in the <strong>alert</strong> message.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">paramId</span></code> (<em>required</em>)</p>
+<blockquote>
+<div><p>The unique <strong>parameter</strong> ID from <strong>1..255</strong> used as the <strong>alert</strong> trigger.
+This parameter’s value will be included in the <strong>alert</strong> message by default.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">paramIds</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A string of comma separated values of unique <strong>parameter id(s)</strong> that will be included in the alert, in addition to the trigger value.
+This is typically used to cross-reference relevant data sources affected by the trigger value or as useful metadata to the alert condition.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">minON</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A lower threshold value from <strong>-2147483647..2147483647</strong> against which the parameter value will be tested.
+If the parameter value drops <em>below minON</em>, a minimum ON alert <a class="reference internal" href="otaapi.html#paramalerton"><span class="std std-ref">paramAlertON (MIN 101)</span></a> will be generated, indicating that current value crossed the minimum threshold.</p>
+<p>This alarm condition will persist until the value rises <em>above minOFF</em>.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">minOFF</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A mid-range threshold value from <strong>-2147483647..2147483647</strong> against which the parameter value will be tested.
+If the parameter value raises <em>above minOFF</em> after having dropped below minON, a minimum OFF alert <a class="reference internal" href="otaapi.html#paramalertoff"><span class="std std-ref">paramAlertOFF (MIN 102)</span></a> will be generated, indicating that current value returned to the normal range.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">maxON</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>An upper threshold value from <strong>-2147483647..2147483647</strong> against which the parameter value will be tested.
+If the parameter value raises <em>above maxON</em>, a maximum ON alert <a class="reference internal" href="otaapi.html#paramalerton"><span class="std std-ref">paramAlertON (MIN 101)</span></a> will be generated, indicating that current value crossed the maximum threshold.</p>
+<p>This alarm condition will persist until the value drops <em>below maxOFF</em>.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">maxOFF</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A mid-range threshold value from <strong>-2147483647..2147483647</strong> against which the parameter value will be tested.
+If the parameter value drops <em>below maxOFF</em> after having raised above minON, a maximum OFF alert <a class="reference internal" href="otaapi.html#paramalertoff"><span class="std std-ref">paramAlertOFF (MIN 102)</span></a> will be generated, indicating that current value returned to the normal range.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">change</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>A relative threshold value from <strong>0..2147483647</strong> against which the last reported parameter value will be tested.
+If the parameter value changes by this value or more relative to the last reported value, an alert is generated.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">msgBitmap</span></code> (<em>optional</em>)</p>
+<blockquote>
+<div><p>An ASCII hex string value from <strong>“00”..”FF”</strong> used to override the default Bitmap and include/exclude optional message fields in this particular <strong>alert</strong>.</p>
+<p>See: <a class="reference internal" href="#msgbitmap"><span class="std std-ref">msgBitmap</span></a></p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="default-settings-configuration-properties">
+<h2>4.6. Default Settings (Configuration Properties)<a class="headerlink" href="#default-settings-configuration-properties" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>LSF</strong> service contains configuration <strong>properties</strong> each referenced by unique Property Identification Number (<strong>pin</strong>) within the scope of the service (<strong>sin</strong>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section assumes the reader has a good understanding of the ORBCOMM Lua Service Framework and is familiar with how to read their Lua/Terminal API specification.</p>
+</div>
+<div class="section" id="geolocation-movement-alert-configuration">
+<span id="geolocation-config"></span><h3>4.6.1. Geolocation Movement Alert Configuration<a class="headerlink" href="#geolocation-movement-alert-configuration" title="Permalink to this headline">¶</a></h3>
+<p>By default, <em>geolocation</em> alerts are disabled.  To enable <em>geolocation</em> alerts, you must configure user service property <code class="docutils literal notranslate"><span class="pre">assetMoveDist</span></code> with a non-zero distance (in meters).
+You can also change the user service property <code class="docutils literal notranslate"><span class="pre">posAlarmDebounce</span></code> from its default value to modify the <em>geolocation</em> behaviour.</p>
+</div>
+<div class="section" id="lsf-properties">
+<h3>4.6.2. LSF Properties<a class="headerlink" href="#lsf-properties" title="Permalink to this headline">¶</a></h3>
+<span id="config-properties"></span><table border="1" class="colwidths-given docutils" id="id7">
+<caption><span class="caption-text">Configuration Properties</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="8%" />
+<col width="17%" />
+<col width="33%" />
+<col width="13%" />
+<col width="12%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PIN</th>
+<th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Type</th>
+<th class="head">Storage Class</th>
+<th class="head">Default Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>logsBitmap</td>
+<td><p class="first">Hexadecimal binary mask to enable/disable logs.</p>
+<ul class="last simple">
+<li>Errors</li>
+<li>Warnings</li>
+<li>Debug</li>
+</ul>
+</td>
+<td>string</td>
+<td>Config</td>
+<td>E0 (error/warning)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>lostComMsgDebounce</td>
+<td>Duration (seconds) to ignore subsequent communication losses after sending an <em>alert</em>.</td>
+<td>unsignedInt</td>
+<td>Config</td>
+<td>120</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>defaultMsgBitmap</td>
+<td><p class="first">Hexadecimal binary mask to include metadata fields in <strong>reports</strong> and <strong>alerts</strong>.</p>
+<ul class="last simple">
+<li>latitude</li>
+<li>longitude</li>
+<li>speed</li>
+<li>altitude</li>
+<li>distance</li>
+<li>timestamp</li>
+<li>paramTimestamp</li>
+<li>(reserved)</li>
+</ul>
+</td>
+<td>string</td>
+<td>Config</td>
+<td>FF (all enabled)</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>changeAlarmDebounce</td>
+<td>Duration (seconds) to ignore subsequent <em>change</em> detections after sending an <strong>alert</strong>.</td>
+<td><div class="first last line-block">
+<div class="line">unsignedInt</div>
+<div class="line">max=3600</div>
+</div>
+</td>
+<td>Config</td>
+<td>120</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>posAlarmDebounce</td>
+<td>Duration (seconds) to ignore subsequent <em>geolocation</em> detections after sending an <strong>alert</strong>.</td>
+<td><div class="first last line-block">
+<div class="line">unsignedInt</div>
+<div class="line">max=86400</div>
+</div>
+</td>
+<td>Config</td>
+<td>3600</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>isLPM</td>
+<td>Enables power saving operation.</td>
+<td>boolean</td>
+<td>Config</td>
+<td>FALSE</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>refLatitude</td>
+<td>Latitude (milliminutes) used as a reference point for <em>geolocation</em> alerts.</td>
+<td><div class="first last line-block">
+<div class="line">signedInt</div>
+<div class="line">min=-5400000</div>
+<div class="line">max=5400000</div>
+</div>
+</td>
+<td>Config</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>refLongitude</td>
+<td>Longitude (milliminutes) used as a reference point for <em>geolocation</em> alerts.</td>
+<td><div class="first last line-block">
+<div class="line">signedInt</div>
+<div class="line">min=-10800000</div>
+<div class="line">max=10800000</div>
+</div>
+</td>
+<td>Config</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>assetMoveDist</td>
+<td>Distance threshold (meters) used to trigger <em>geolocation</em> alerts.</td>
+<td><div class="first last line-block">
+<div class="line">unsignedInt</div>
+<div class="line">0 = disabled</div>
+</div>
+</td>
+<td>Config</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>11..255</td>
+<td>Output1..Output245</td>
+<td>Parameters values mapped to Properties</td>
+<td>string</td>
+<td>Volatile</td>
+<td>“”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="optional-metadata-fields-in-messages">
+<h3>4.6.3. Optional Metadata Fields in Messages<a class="headerlink" href="#optional-metadata-fields-in-messages" title="Permalink to this headline">¶</a></h3>
+<p>Verbose metadata is, by default, enabled on all <strong>reports</strong> and <strong>alerts</strong>.
+You can change this behaviour by any of the following methods:</p>
+<ul class="simple">
+<li>Change the default for <em>ALL</em> <strong>reports</strong> and <strong>alerts</strong> using <code class="docutils literal notranslate"><span class="pre">defaultMsgBitmap</span></code> property value in your <a class="reference internal" href="usage.html#solution-studio-package"><span class="std std-ref">build package</span></a></li>
+<li>Configure on a per-report or per-alert basis using your <a class="reference internal" href="#configfile"><span class="std std-ref">configuration file</span></a></li>
+<li>or using the <a class="reference internal" href="otaapi.html#to-mobile-messages"><span class="std std-ref">OTA API</span></a></li>
+</ul>
+<span id="msgbitmap"></span><table border="1" class="colwidths-given docutils" id="id8">
+<caption><span class="caption-text">Optional Metadata Fields Configuration (MsgBitmap, defaultMsgBitmap)</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="42%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Optional Field</th>
+<th class="head">Default Setting</th>
+<th class="head">Example 1 (lat/lng/alt/time)</th>
+<th class="head">Example 2 (time only)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>latitude</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>longitude</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>speed</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>altitude</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>distance</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>timestamp</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>paramTimestamp</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>(<em>reserved</em>)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">msgBitmap</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">FF</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">D4</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">04</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="otaapi.html" title="5. OTA API Integration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="3. How to Use"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IDP Modbus Proxy 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Inmarsat 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+    </div>
+  </body>
+</html>

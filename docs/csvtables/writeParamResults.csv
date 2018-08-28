@@ -1,0 +1,10 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+parameters,array,N,N,100,The list of **parameter** values being queried.
+   * paramId,unsignedint,N,Y,10,Unique identifier of the **parameter** to query.
+   * paramTimestamp,unsignedint,Y,N/A,31,"Parameter timestamp in seconds since *1970-01-01T00:00:00Z*.
+
+Only present if ``paramTimestamp`` is configured in *metadata* options."
+   * errText,string,Y,N,100,Verbose error text if a read error occurred.
+timestamp,unsignedint,Y,Y,31,"Response timestamp, seconds since *1970-01-01T00:00:00Z*.
+
+Only present if configured in *metadata* options."

@@ -1,0 +1,8 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+reports,array,N,N,100,The list of periodic **reports** configured (*set*) or requested (*get*).
+   * reportId,unsignedint,N,Y,31,Unique identifier of the **report** associated with particular parameter values.
+   * paramIds,string,N,N,255,Comma-separated list of **parameter** ids to be included in the **report**.
+  * interval,unsignedint,N,Y,20,"The periodic **report** interval, in *seconds*."
+   * timeOfDay,unsignedint,Y,Y,18,"*Optional* time of day, in seconds (0..86400) to create a snapshot that will be reported within the **timeOfDayWindow**."
+   * timeOfDayWindow,unsignedint,Y,Y,13,"Included if using **timeOfDay**.  Window, in seconds, within which the **report** will be sent offset relative to the **timeOfDay** snapshot."
+   * msgBitMap,string,Y,Y,2,"ASCII string of *metadata* fields to include, overriding **defaultMsgBitmap** value.  See :ref:`msgbitmap`."

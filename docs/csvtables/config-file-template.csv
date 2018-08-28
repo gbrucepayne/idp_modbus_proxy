@@ -1,0 +1,6 @@
+Data/Sensor,Register Type,Register Number,Register Address,Units,Decoding,Min,Max,paramId,registerType,address,encoding
+Air temperature,Read-only (Input Register),32,31,Celsius,"Factor 10, signed",-500,600,1,analog,31,int16
+Relative humidity,Read-only (Input Register),11,10,%RH,"Factor 10, signed",0,1000,2,analog,10,int16
+Relative air pressure,Read-only (Input Register),15,14,hPa,"Factor 10, signed",3000,12000,3,analog,14,int16
+"Wind speed, average",Read-only (Input Register),87,86,km/h,"Factor 10, signed",0,2700,4,analog,86,int16
+Wind direction,Read-only (Input Register),19,18,degrees,"Factor 10, signed",0,3599,5,analog,18,int16

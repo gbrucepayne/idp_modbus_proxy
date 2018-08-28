@@ -1,0 +1,12 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+ports,array,Y,N,3,"If included, configuration for the specified **ports** will be deleted.  If *not* included, no ports will be deleted."
+   * port,enum,N,Y,2,"| Name of the **port** configuration to delete.
+| ``rs232``
+| ``rs485``
+| ``rs232aux``"
+devices,array,Y,N,100,"If included, configuration for the specified **devices** will be deleted.  If *not* included, no devices will be deleted."
+   * deviceId,unsignedint,N,Y,8,Unique identifier of the **device** to delete.
+parameters,array,Y,N,300,"If included, configuration for the specified **parameters** will be deleted.  If *not* included, no parameters will be deleted."
+   * paramId,unsignedint,N,N/A,10,Unique identifier of the **parameter** to delete.
+properties,array,Y,N,245,"If included, configuration for the specified **properties** will be deleted.  If *not* included, no properties will be deleted."
+   * property,unsignedint,N,N/A,10,The property identification number (within Modbus service) to hold the parameter value.

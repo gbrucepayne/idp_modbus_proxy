@@ -1,0 +1,6 @@
+Field Name,Type,Optional,Fixed,Size,Comments
+reportId,unsignedint,Y,Y,31,"If included, specifies the **report** configuration being deleted.
+
+.. warning::
+    If *not* included, all reports configurations will be deleted.
+"
