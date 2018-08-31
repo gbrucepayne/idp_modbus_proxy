@@ -43,7 +43,7 @@
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcspec.html">2. Functional Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">3. How to Use</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">4. Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-configuration-file">4.1. The Configuration File</a></li>
@@ -127,13 +127,13 @@
 </div>
 <div class="section" id="shell-commands">
 <h2>4.2. Shell Commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">¶</a></h2>
-<p>For initial testing of the service, you can use <em>shell</em> commands on the main serial port of the terminal to configure individual <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong>, <strong>reports</strong> and <strong>alerts</strong>.</p>
+<p>For initial testing of the service, you can use <a class="reference internal" href="lsfapi.html#shell-commands"><span class="std std-ref">shell commands</span></a> on the main serial port of the terminal to configure individual <strong>ports</strong>, <strong>devices</strong>, <strong>parameters</strong>, <strong>reports</strong> and <strong>alerts</strong>.</p>
 <p>The <em>shell</em> commands can be queried iteratively using the <code class="docutils literal notranslate"><span class="pre">?</span></code> operator:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modbus ?
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>shell&gt; modbus ?
 </pre></div>
 </div>
 <p>An example <em>shell</em> command to configure a <strong>parameter</strong> would look like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">parameter</span> <span class="n">paramId</span><span class="o">=</span><span class="mi">1</span> <span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span> <span class="n">registerType</span><span class="o">=</span><span class="n">analog</span> <span class="n">address</span><span class="o">=</span><span class="mi">31</span> <span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shell</span><span class="o">&gt;</span> <span class="n">modbus</span> <span class="n">config</span> <span class="nb">set</span> <span class="n">parameter</span> <span class="n">paramId</span><span class="o">=</span><span class="mi">1</span> <span class="n">deviceId</span><span class="o">=</span><span class="mi">1</span> <span class="n">registerType</span><span class="o">=</span><span class="n">analog</span> <span class="n">address</span><span class="o">=</span><span class="mi">31</span> <span class="n">encoding</span><span class="o">=</span><span class="n">int16</span>
 </pre></div>
 </div>
 </div>

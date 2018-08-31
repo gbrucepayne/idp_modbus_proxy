@@ -25,15 +25,15 @@ A simple example ``config.dat`` file could look like :ref:`this <example-config-
 Shell Commands
 **************
 
-For initial testing of the service, you can use *shell* commands on the main serial port of the terminal to configure individual **ports**, **devices**, **parameters**, **reports** and **alerts**.
+For initial testing of the service, you can use :ref:`shell commands <shell_commands>` on the main serial port of the terminal to configure individual **ports**, **devices**, **parameters**, **reports** and **alerts**.
 
 The *shell* commands can be queried iteratively using the ``?`` operator::
 
-	modbus ?
+	shell> modbus ?
 
 An example *shell* command to configure a **parameter** would look like::
 
-	modbus config set parameter paramId=1 deviceId=1 registerType=analog address=31 encoding=int16
+	shell> modbus config set parameter paramId=1 deviceId=1 registerType=analog address=31 encoding=int16
 
 
 Communications Configuration

@@ -10,6 +10,8 @@ Properties
 See :ref:`Configuration <config-properties>`
 
 
+.. _shell_commands:
+
 Shell Commands
 ==============
 
